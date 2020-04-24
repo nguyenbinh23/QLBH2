@@ -6199,13 +6199,8 @@ __webpack_require__.r(__webpack_exports__);
     val: function val() {
       this.fetchProfit();
     },
-    from_date: function from_date(newVal, oldVal) {
-      if (new Date(this.from_date).getDate() > new Date(this.to_date).getDate()) {
-        this.from_date = oldVal;
-      } else {
-        this.from_date = newVal;
-        this.fetchProfit();
-      }
+    from_date: function from_date() {
+      this.fetchProfit();
     },
     to_date: function to_date() {
       this.fetchProfit();
