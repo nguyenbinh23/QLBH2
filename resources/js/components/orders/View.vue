@@ -486,7 +486,7 @@ export default {
         resultQuery(){
             if(this.searchQuery){
             return this.customers.filter((item)=>{
-                return this.searchQuery.toLowerCase().split(' ').every(v => item.name.toLowerCase().includes(v))
+                return this.searchQuery.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().split(' ').every(v => item.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(v))
             })
             }else{
                 return this.customers;

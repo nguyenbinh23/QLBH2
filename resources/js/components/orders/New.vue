@@ -113,7 +113,7 @@
                     <td class="price-item" v-else @click="setActiveIndexPrice(index,product)">{{product.price | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</td>
                     <td>
                         <div class="form-group">
-                            <input type="number"  class="form-control"
+                            <input type="number" min="0" class="form-control"
                             v-model="product.quantity"
                             @input="changeQuantity(product)">
                         </div>
@@ -466,7 +466,7 @@ export default {
         resultQuery(){
             if(this.searchQuery){
             return this.customers.filter((item)=>{
-                return this.searchQuery.toLowerCase().split(' ').every(v => item.name.toLowerCase().includes(v))
+                return this.searchQuery.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().split(' ').every(v => item.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(v))
             })
             }else{
                 return this.customers;

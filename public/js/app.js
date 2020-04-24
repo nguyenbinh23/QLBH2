@@ -3950,8 +3950,8 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.searchQuery) {
         return this.customers.filter(function (item) {
-          return _this.searchQuery.toLowerCase().split(' ').every(function (v) {
-            return item.name.toLowerCase().includes(v);
+          return _this.searchQuery.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().split(' ').every(function (v) {
+            return item.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(v);
           });
         });
       } else {
@@ -4796,8 +4796,8 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.searchQuery) {
         return this.customers.filter(function (item) {
-          return _this.searchQuery.toLowerCase().split(' ').every(function (v) {
-            return item.name.toLowerCase().includes(v);
+          return _this.searchQuery.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().split(' ').every(function (v) {
+            return item.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(v);
           });
         });
       } else {
@@ -50404,7 +50404,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "number" },
+                      attrs: { type: "number", min: "0" },
                       domProps: { value: product.quantity },
                       on: {
                         input: [
