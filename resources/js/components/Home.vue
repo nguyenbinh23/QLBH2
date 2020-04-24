@@ -12,16 +12,15 @@
                         <router-link to="/"><a class="nav-link active btn btn-primary" href="#"> Đang phát triển</a></router-link>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0 ">
-                    <div v-if="!currentUser">
-                      <router-link to="/login" class="btn btn-outline-success my-2 mr-2 my-sm-0"><i class="fas fa-sign-in-alt"></i> Đăng nhập</router-link>
-                      <router-link to="/register" class="btn btn-outline-warning my-2 my-sm-0"><i class="fas fa-pen-square"></i> Đăng ký</router-link>
+                <div class="btn-group dropleft">
+                    <button type="button" class="btn btn-primary my-2 mr-2 my-sm-0 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{currentUser.name}} <i class="fa fa-user" aria-hidden="true" v-if="currentUser.quyenhan !== 'admin'" ></i><i v-else class="fa fa-user-shield" aria-hidden="true"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <router-link class="dropdown-item" v-if="currentUser.quyenhan === 'admin' && $route.path !== '/admin'" to="/admin"><i class="fa fa-spin fa-cog" aria-hidden="true"></i> Trang quản trị </router-link>
+                        <button class="dropdown-item" @click="logout"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</button>
                     </div>
-                    <div v-else>
-                      <router-link to="/user" class="btn btn-info my-2 mr-2 my-sm-0" title="Thông tin tài khoản"><i class="fas fa-user-shield"></i> {{currentUser.name}}</router-link>
-                      <button class="btn btn-danger my-2 my-sm-0" @click="logout"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </nav>
     </div>

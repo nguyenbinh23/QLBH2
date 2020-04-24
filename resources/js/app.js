@@ -76,16 +76,22 @@ const router = new VueRouter({
 
 initialize(store,router)
 
+
+
 axios.interceptors.request.use(config => {
-    app.$Progress.start(); // for every request start the progress
+    app.$Progress.start() // for every request start the progress
     return config;
 });
 
 axios.interceptors.response.use(response => {
-    app.$Progress.finish(); // finish when a response is received
+    app.$Progress.finish() // finish when a response is received
     return response;
 });
 
+axios.interceptors.response.use(null, (error) => {
+    app.$Progress.fail()
+    return Promise.reject(error)
+})
 
 const app = new Vue({
     el: '#app',

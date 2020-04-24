@@ -121,12 +121,12 @@
                     </div>
                         <template v-if="errors">
                             <h5 v-if="k.indexOf('files.') !== -1"  v-for="(error,k,index) in errors" :key="error+Math.random()">
-                                <template>
+                                <template v-if="error[0] === 'max'">
                                     <span class="badge badge-danger">
                                             File {{String(k).slice(6,9)}} phải nhỏ hơn 5MB
                                     </span>
                                 </template>
-                                <template>
+                                <template v-else>
                                     <span class="badge badge-danger">
                                             File {{String(k).slice(6,7)}} phải có đuôi là jpg,jpeg,png,bmp,tiff
                                     </span>

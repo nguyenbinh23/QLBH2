@@ -2028,6 +2028,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'app-header',
   data: function data() {
@@ -2057,7 +2066,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -6112,6 +6120,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6122,27 +6139,21 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.val = this.currentDate;
+    this.from_date = this.fromDate;
+    this.to_date = this.currentDate;
   },
   data: function data() {
     return {
-      chartData: [],
       chartData2: [],
-      chartData3: [],
-      chartData4: [],
-      chartOptions: {
+      chartOptions2: {
         chart: {
-          title: 'Bảng thống kê lãi suất trong ngày',
+          title: "Th\u1ED1ng k\xEA nh\u1EADp xu\u1EA5t t\u1EEB ".concat(this.from_date, " \u0111\u1EBFn ").concat(this.to_date, " ng\xE0y"),
           subtitle: ''
         },
         height: 500
       },
-      chartOptions2: {
-        chart: {
-          title: 'Bảng thống kê lãi suất trong tháng',
-          subtitle: ''
-        },
-        height: 350
-      },
+      chartData3: [],
+      chartData4: [],
       chartOptions3: {
         chart: {
           title: 'Thống kê nhập xuất trong tháng',
@@ -6157,7 +6168,9 @@ __webpack_require__.r(__webpack_exports__);
         },
         height: 500
       },
-      val: null
+      val: null,
+      from_date: null,
+      to_date: null
     };
   },
   methods: {
@@ -6169,20 +6182,32 @@ __webpack_require__.r(__webpack_exports__);
           "Authorization": 'Bearer ' + this.currentUser.token
         },
         params: {
-          date: this.val
+          date: this.val,
+          from_date: this.from_date,
+          to_date: this.to_date
         }
       }).then(function (response) {
-        _this.chartData = response.data.loinhuantrongngay;
-        _this.chartData2 = response.data.loinhuan1thang;
+        _this.chartData2 = response.data.nhapxuattrongkhoangthoigian;
         _this.chartData3 = response.data.nhapxuat1thang;
         _this.chartData4 = response.data.nhapxuattrongngay;
       })["catch"](function (error) {
-        console.log(error);
+        _this.$Progress.fail();
       });
     }
   },
   watch: {
     val: function val() {
+      this.fetchProfit();
+    },
+    from_date: function from_date(newVal, oldVal) {
+      if (new Date(this.from_date).getDate() > new Date(this.to_date).getDate()) {
+        this.from_date = oldVal;
+      } else {
+        this.from_date = newVal;
+        this.fetchProfit();
+      }
+    },
+    to_date: function to_date() {
       this.fetchProfit();
     }
   },
@@ -6193,6 +6218,14 @@ __webpack_require__.r(__webpack_exports__);
     currentDate: function currentDate() {
       var myDate = new Date();
       var month = ('0' + (myDate.getMonth() + 1)).slice(-2);
+      var date = ('0' + myDate.getDate()).slice(-2);
+      var year = myDate.getFullYear();
+      var currentDateWithFormat = date + '-' + month + '-' + year;
+      return currentDateWithFormat;
+    },
+    fromDate: function fromDate() {
+      var myDate = new Date();
+      var month = ('0' + myDate.getMonth()).slice(-2);
       var date = ('0' + myDate.getDate()).slice(-2);
       var year = myDate.getFullYear();
       var currentDateWithFormat = date + '-' + month + '-' + year;
@@ -46073,35 +46106,76 @@ var render = function() {
                     ],
                     1
                   )
-                : _c(
-                    "div",
-                    [
+                : _c("div", [
+                    _c("div", { staticClass: "btn-group dropleft" }, [
                       _c(
-                        "router-link",
+                        "button",
                         {
-                          staticClass: "btn btn-info my-2 mr-2 my-sm-0",
-                          attrs: { to: "/user", title: "Thông tin tài khoản" }
+                          staticClass:
+                            "btn btn-primary my-2 mr-2 my-sm-0 dropdown-toggle",
+                          attrs: {
+                            type: "button",
+                            "data-toggle": "dropdown",
+                            "aria-haspopup": "true",
+                            "aria-expanded": "false"
+                          }
                         },
                         [
-                          _c("i", { staticClass: "fas fa-user-shield" }),
-                          _vm._v(" " + _vm._s(_vm.currentUser.name))
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(_vm.currentUser.name) +
+                              " "
+                          ),
+                          _vm.currentUser.quyenhan !== "admin"
+                            ? _c("i", {
+                                staticClass: "fa fa-user",
+                                attrs: { "aria-hidden": "true" }
+                              })
+                            : _c("i", {
+                                staticClass: "fa fa-user-shield",
+                                attrs: { "aria-hidden": "true" }
+                              })
                         ]
                       ),
                       _vm._v(" "),
                       _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger my-2 my-sm-0",
-                          on: { click: _vm.logout }
-                        },
+                        "div",
+                        { staticClass: "dropdown-menu" },
                         [
-                          _c("i", { staticClass: "fas fa-sign-out-alt" }),
-                          _vm._v(" Đăng Xuất")
-                        ]
+                          _vm.currentUser.quyenhan === "admin" &&
+                          _vm.$route.path !== "/admin"
+                            ? _c(
+                                "router-link",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { to: "/admin" }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-spin fa-cog",
+                                    attrs: { "aria-hidden": "true" }
+                                  }),
+                                  _vm._v(" Trang quản trị ")
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "dropdown-item",
+                              on: { click: _vm.logout }
+                            },
+                            [
+                              _c("i", { staticClass: "fas fa-sign-out-alt" }),
+                              _vm._v(" Đăng Xuất")
+                            ]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  )
+                    ])
+                  ])
             ])
           ],
           2
@@ -46276,67 +46350,70 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("form", { staticClass: "form-inline my-2 my-lg-0 " }, [
-              !_vm.currentUser
-                ? _c(
-                    "div",
-                    [
-                      _c(
+            _c("div", { staticClass: "btn-group dropleft" }, [
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "btn btn-primary my-2 mr-2 my-sm-0 dropdown-toggle",
+                  attrs: {
+                    type: "button",
+                    "data-toggle": "dropdown",
+                    "aria-haspopup": "true",
+                    "aria-expanded": "false"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.currentUser.name) +
+                      " "
+                  ),
+                  _vm.currentUser.quyenhan !== "admin"
+                    ? _c("i", {
+                        staticClass: "fa fa-user",
+                        attrs: { "aria-hidden": "true" }
+                      })
+                    : _c("i", {
+                        staticClass: "fa fa-user-shield",
+                        attrs: { "aria-hidden": "true" }
+                      })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "dropdown-menu" },
+                [
+                  _vm.currentUser.quyenhan === "admin" &&
+                  _vm.$route.path !== "/admin"
+                    ? _c(
                         "router-link",
                         {
-                          staticClass:
-                            "btn btn-outline-success my-2 mr-2 my-sm-0",
-                          attrs: { to: "/login" }
+                          staticClass: "dropdown-item",
+                          attrs: { to: "/admin" }
                         },
                         [
-                          _c("i", { staticClass: "fas fa-sign-in-alt" }),
-                          _vm._v(" Đăng nhập")
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "btn btn-outline-warning my-2 my-sm-0",
-                          attrs: { to: "/register" }
-                        },
-                        [
-                          _c("i", { staticClass: "fas fa-pen-square" }),
-                          _vm._v(" Đăng ký")
+                          _c("i", {
+                            staticClass: "fa fa-spin fa-cog",
+                            attrs: { "aria-hidden": "true" }
+                          }),
+                          _vm._v(" Trang quản trị ")
                         ]
                       )
-                    ],
-                    1
-                  )
-                : _c(
-                    "div",
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    { staticClass: "dropdown-item", on: { click: _vm.logout } },
                     [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "btn btn-info my-2 mr-2 my-sm-0",
-                          attrs: { to: "/user", title: "Thông tin tài khoản" }
-                        },
-                        [
-                          _c("i", { staticClass: "fas fa-user-shield" }),
-                          _vm._v(" " + _vm._s(_vm.currentUser.name))
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger my-2 my-sm-0",
-                          on: { click: _vm.logout }
-                        },
-                        [
-                          _c("i", { staticClass: "fas fa-sign-out-alt" }),
-                          _vm._v(" Đăng Xuất")
-                        ]
-                      )
-                    ],
-                    1
+                      _c("i", { staticClass: "fas fa-sign-out-alt" }),
+                      _vm._v(" Đăng Xuất")
+                    ]
                   )
+                ],
+                1
+              )
             ])
           ]
         )
@@ -55297,33 +55374,33 @@ var render = function() {
                               "h5",
                               { key: error + Math.random() },
                               [
-                                [
-                                  _c(
-                                    "span",
-                                    { staticClass: "badge badge-danger" },
-                                    [
-                                      _vm._v(
-                                        "\n                                        File " +
-                                          _vm._s(String(k).slice(6, 9)) +
-                                          " phải nhỏ hơn 5MB\n                                "
+                                error[0] === "max"
+                                  ? [
+                                      _c(
+                                        "span",
+                                        { staticClass: "badge badge-danger" },
+                                        [
+                                          _vm._v(
+                                            "\n                                        File " +
+                                              _vm._s(String(k).slice(6, 9)) +
+                                              " phải nhỏ hơn 5MB\n                                "
+                                          )
+                                        ]
                                       )
                                     ]
-                                  )
-                                ],
-                                _vm._v(" "),
-                                [
-                                  _c(
-                                    "span",
-                                    { staticClass: "badge badge-danger" },
-                                    [
-                                      _vm._v(
-                                        "\n                                        File " +
-                                          _vm._s(String(k).slice(6, 7)) +
-                                          " phải có đuôi là jpg,jpeg,png,bmp,tiff\n                                "
+                                  : [
+                                      _c(
+                                        "span",
+                                        { staticClass: "badge badge-danger" },
+                                        [
+                                          _vm._v(
+                                            "\n                                        File " +
+                                              _vm._s(String(k).slice(6, 7)) +
+                                              " phải có đuôi là jpg,jpeg,png,bmp,tiff\n                                "
+                                          )
+                                        ]
                                       )
                                     ]
-                                  )
-                                ]
                               ],
                               2
                             )
@@ -55428,7 +55505,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "card-body bg-dark text-white" }, [
             _c("div", { staticClass: "row text-dark mb-2" }, [
-              _c("div", { staticClass: "col-6 col-md-6" }, [
+              _c("div", { staticClass: "col-4 col-md-4" }, [
                 _c("div", { staticClass: "form-group" }, [
                   _c(
                     "div",
@@ -55457,29 +55534,72 @@ var render = function() {
                     1
                   )
                 ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4 col-md-4" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-inline" },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "text-white mr-2",
+                          attrs: { for: "Time" }
+                        },
+                        [_vm._v("Từ ngày:")]
+                      ),
+                      _vm._v(" "),
+                      _c("datetime", {
+                        attrs: { format: "DD-MM-YYYY", id: "Time" },
+                        model: {
+                          value: _vm.from_date,
+                          callback: function($$v) {
+                            _vm.from_date = $$v
+                          },
+                          expression: "from_date"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4 col-md-4" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-inline" },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "text-white mr-2",
+                          attrs: { for: "Time" }
+                        },
+                        [_vm._v("Đến ngày:")]
+                      ),
+                      _vm._v(" "),
+                      _c("datetime", {
+                        attrs: { format: "DD-MM-YYYY", id: "Time" },
+                        model: {
+                          value: _vm.to_date,
+                          callback: function($$v) {
+                            _vm.to_date = $$v
+                          },
+                          expression: "to_date"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ])
               ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row justify-content-center" }, [
-              _c(
-                "div",
-                { staticClass: "col-12 col-sm-8 col-md-6" },
-                [
-                  _c("h4", { staticClass: "text-center" }, [
-                    _vm._v("Thống kê lãi suất trong ngày")
-                  ]),
-                  _vm._v(" "),
-                  _c("GChart", {
-                    attrs: {
-                      type: "ColumnChart",
-                      data: _vm.chartData,
-                      options: _vm.chartOptions
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "col-12 col-sm-8 col-md-6 mb-4" },
@@ -55497,6 +55617,30 @@ var render = function() {
                   })
                 ],
                 1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-12 col-sm-8 col-md-6 mb-4" },
+                [
+                  _c("h4", { staticClass: "text-center" }, [
+                    _vm._v(
+                      "Thống kê nhập xuất từ " +
+                        _vm._s(_vm.from_date) +
+                        " đến " +
+                        _vm._s(_vm.to_date)
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("GChart", {
+                    attrs: {
+                      type: "ColumnChart",
+                      data: _vm.chartData2,
+                      options: _vm.chartOptions2
+                    }
+                  })
+                ],
+                1
               )
             ]),
             _vm._v(" "),
@@ -55505,7 +55649,7 @@ var render = function() {
             _c("div", { staticClass: "row justify-content-center" }, [
               _c(
                 "div",
-                { staticClass: "col-12 col-sm-8 col-md-6" },
+                { staticClass: "col-12" },
                 [
                   _c("h4", { staticClass: "text-center" }, [
                     _vm._v("Thống kê nhập xuất trong tháng")
@@ -55516,25 +55660,6 @@ var render = function() {
                       type: "ColumnChart",
                       data: _vm.chartData3,
                       options: _vm.chartOptions3
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-12 col-sm-8 col-md-6" },
-                [
-                  _c("h4", { staticClass: "text-center" }, [
-                    _vm._v("Thống kê lãi suất trong tháng")
-                  ]),
-                  _vm._v(" "),
-                  _c("GChart", {
-                    attrs: {
-                      type: "LineChart",
-                      data: _vm.chartData2,
-                      options: _vm.chartOptions2
                     }
                   })
                 ],
@@ -78300,6 +78425,10 @@ axios__WEBPACK_IMPORTED_MODULE_10___default.a.interceptors.response.use(function
 
   return response;
 });
+axios__WEBPACK_IMPORTED_MODULE_10___default.a.interceptors.response.use(null, function (error) {
+  app.$Progress.fail();
+  return Promise.reject(error);
+});
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   store: store,
@@ -80618,6 +80747,8 @@ function getLocalUser() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initialize", function() { return initialize; });
+/* harmony import */ var _app_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app.js */ "./resources/js/app.js");
+
 function initialize(store, router) {
   router.beforeEach(function (to, from, next) {
     var requiresAuth = to.matched.some(function (record) {

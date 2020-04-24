@@ -1,4 +1,4 @@
-
+import app from '../app.js'
 
 export function initialize(store, router){
     router.beforeEach((to,from,next) => {
