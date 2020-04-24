@@ -3336,17 +3336,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'list',
   data: function data() {
@@ -3359,26 +3348,10 @@ __webpack_require__.r(__webpack_exports__);
       first_page_url: null,
       current_page: 1,
       ordersName: null,
-      orderKind: 'tatcakhachhang',
-      order_details: ''
+      orderKind: 'tatcakhachhang'
     };
   },
   computed: {
-    null_items: function null_items() {
-      var items = [];
-      var length = 10 - this.order_selected.order_details.length;
-
-      if (length > 0) {
-        for (var i = 0; i < length; i++) {
-          items.push({
-            id: i,
-            quantity: ''
-          });
-        }
-      }
-
-      return items;
-    },
     currentUser: function currentUser() {
       return this.$store.getters.currentUser;
     },
@@ -3395,8 +3368,8 @@ __webpack_require__.r(__webpack_exports__);
       return this.last_page_url;
     },
     totalPrice: function totalPrice() {
-      return this.order_details.reduce(function (total, item) {
-        return total + item.totalprice * item.quantity;
+      return this.order_selected.order_details.reduce(function (total, item) {
+        return total + item.totalprice;
       }, 0);
     }
   },
@@ -3452,8 +3425,8 @@ __webpack_require__.r(__webpack_exports__);
       this.findOrder();
     },
     viewOrderDetail: function viewOrderDetail(order) {
-      this.order_selected = '', this.order_details = order.order_details;
       this.order_selected = order;
+      console.log(order);
     },
     printOrder: function printOrder() {
       this.$htmlToPaper('hoadon');
@@ -49214,7 +49187,10 @@ var render = function() {
                         [
                           _vm._m(7),
                           _vm._v(" "),
-                          _vm._l(_vm.order_details, function(item, index) {
+                          _vm._l(_vm.order_selected.order_details, function(
+                            item,
+                            index
+                          ) {
                             return _c("tr", { key: item.id }, [
                               _c("th", { attrs: { height: "50" } }, [
                                 _vm._v(_vm._s((index += 1)))
@@ -49229,16 +49205,11 @@ var render = function() {
                               _c("td", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("currency")(
-                                      item.totalprice,
-                                      "VND",
-                                      0,
-                                      {
-                                        thousandsSeparator: ",",
-                                        spaceBetweenAmountAndSymbol: true,
-                                        symbolOnLeft: false
-                                      }
-                                    )
+                                    _vm._f("currency")(item.price, "VND", 0, {
+                                      thousandsSeparator: ",",
+                                      spaceBetweenAmountAndSymbol: true,
+                                      symbolOnLeft: false
+                                    })
                                   )
                                 )
                               ]),
@@ -49266,30 +49237,6 @@ var render = function() {
                               ])
                             ])
                           }),
-                          _vm._v(" "),
-                          _vm.null_items.length
-                            ? _vm._l(_vm.null_items, function(item) {
-                                return _c("tr", { key: item.id }, [
-                                  _c("th", { attrs: { height: "50" } }, [
-                                    _vm._v(_vm._s(item.null))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(item.null))]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(item.null))]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(item.null))]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(item.null))]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(item.null))]),
-                                  _vm._v(" "),
-                                  _c("td", { staticClass: "text-right" }, [
-                                    _vm._v(_vm._s(item.null))
-                                  ])
-                                ])
-                              })
-                            : _vm._e(),
                           _vm._v(" "),
                           _c("tr", [
                             _c(

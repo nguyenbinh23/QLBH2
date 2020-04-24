@@ -146,26 +146,15 @@
                                 <td>6</td>
                                 <td>7 = (4 x 5) - (4 x 5) x (6 / 100)</td>
                             </tr>
-                            <tr v-for="(item,index) in order_details" :key="item.id">
+                            <tr v-for="(item,index) in order_selected.order_details" :key="item.id">
                                 <th height="50">{{ index += 1 }}</th>
                                 <td>{{item.product_name}}</td>
                                 <td>{{item.unit}}</td>
                                 <td>{{item.quantity}}</td>
-                                <td>{{item.totalprice| currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</td>
+                                <td>{{item.price| currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</td>
                                 <td>{{item.discount}} %</td>
                                 <td class="text-right">{{  (item.quantity * item.price) - (item.quantity * item.price)*(item.discount / 100) | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</td>
                             </tr>
-                            <template v-if="null_items.length">
-                            <tr v-for="item in null_items" :key="item.id">
-                                <th height="50">{{item.null}}</th>
-                                <td>{{item.null}}</td>
-                                <td>{{item.null}}</td>
-                                <td>{{item.null}}</td>
-                                <td>{{item.null}}</td>
-                                <td>{{item.null}}</td>
-                                <td class="text-right">{{ item.null  }}</td>
-                            </tr>
-                            </template>
                             <tr>
                                 <td colspan="7" class="text-left">
                                     <div class="row">
@@ -180,8 +169,8 @@
                                         </div>
                                         <div class="col text-right">
                                             <p class="font-weight-bold">{{ totalPrice | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
-                                             <p class="font-weight-bold">{{ totalPrice * (order_selected.discount / 100) | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
-                                            <p class="font-weight-bold">{{ totalPrice * (order_selected.tax / 100) | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
+                                            <p class="font-weight-bold">{{ totalPrice * (order_selected.discount / 100) | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
+                                            <p class="font-weight-bold">{{ totalPrice * (order_selected.tax / 100)   | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
                                             <p class="font-weight-bold">{{ order_selected.total_price | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
                                         </div>
                                     </div>
@@ -236,23 +225,9 @@ export default {
             current_page: 1,
             ordersName: null,
             orderKind: 'tatcakhachhang',
-            order_details: '',
         }
     },
     computed: {
-        null_items() {
-            let items = []
-            let length = 10 - this.order_selected.order_details.length
-            if(length > 0){
-                for(let i= 0; i < length;i++){
-                    items.push({
-                        id: i,
-                        quantity: '',
-                    })
-                }
-            }
-            return items
-        },
         currentUser(){
             return this.$store.getters.currentUser
         },
@@ -269,8 +244,8 @@ export default {
             return this.last_page_url
         },
         totalPrice() {
-            return this.order_details.reduce((total,item) => {
-                return total + item.totalprice * item.quantity
+            return this.order_selected.order_details.reduce((total,item) => {
+                return total + item.totalprice
             },0)
         }
     },
@@ -332,9 +307,8 @@ export default {
             this.findOrder()
         },
         viewOrderDetail(order){
-            this.order_selected = '',
-            this.order_details = order.order_details
             this.order_selected = order
+            console.log(order)
         },
         printOrder(){
             this.$htmlToPaper('hoadon');
