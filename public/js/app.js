@@ -78352,8 +78352,6 @@ axios__WEBPACK_IMPORTED_MODULE_10___default.a.interceptors.response.use(function
   app.$Progress.finish(); // finish when a response is received
 
   return response;
-}, function (error) {
-  app.$Progress.fail();
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
