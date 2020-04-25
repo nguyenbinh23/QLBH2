@@ -40,7 +40,7 @@ class StatisticController extends Controller
 
         $array =
         [
-            "$day-$month-$year",
+            "Ngày $day-$month-$year",
             $import_price,
             $sales_price,
         ];
@@ -111,9 +111,11 @@ class StatisticController extends Controller
                     $sales_price += $order->total_price;
                 }
             }
+            $fromDateformat = Carbon::parse($fromDate)->format('d-m-Y');
+            $toDateformat = Carbon::parse($toDate)->format('d-m-Y');
             $array =
             [
-                "Từ ngày $fromDate đến $toDate",
+                "Từ ngày $fromDateformat đến $toDateformat",
                 $import_price,
                 $sales_price,
             ];
