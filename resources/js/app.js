@@ -10,7 +10,12 @@ import { initialize } from './helpers/general'
 import Vue2Filters from 'vue2-filters'
 import VueHtmlToPaper from 'vue-html-to-paper';
 import VueProgressBar from 'vue-progressbar'
+import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm'
 import axios from 'axios';
+
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+
+Vue.use(BootstrapVue);
 
 Vue.use(VueProgressBar, {
     color: 'rgb(143, 255, 199)',

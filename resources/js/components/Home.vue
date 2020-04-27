@@ -7,12 +7,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active ml-2">
-                        <router-link to="/"><a class="nav-link active btn btn-primary" href="#"> Đang phát triển</a></router-link>
-                    </li>
-                </ul>
-                <div class="btn-group dropleft">
+                <div class="btn-group dropleft" v-if="currentUser !== null">
                     <button type="button" class="btn btn-primary my-2 mr-2 my-sm-0 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{currentUser.name}} <i class="fa fa-user" aria-hidden="true" v-if="currentUser.quyenhan !== 'admin'" ></i><i v-else class="fa fa-user-shield" aria-hidden="true"></i>
                     </button>
@@ -20,6 +15,14 @@
                         <router-link class="dropdown-item" v-if="currentUser.quyenhan === 'admin' && $route.path !== '/admin'" to="/admin"><i class="fa fa-spin fa-cog" aria-hidden="true"></i> Trang quản trị </router-link>
                         <button class="dropdown-item" @click="logout"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</button>
                     </div>
+                </div>
+                <div class="btn-group dropleft" v-else>
+                    <router-link to="/login" type="button" class="btn btn-primary my-2 mr-2 my-sm-0">
+                       <i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập
+                    </router-link>
+                    <router-link to="/register" type="button" class="btn btn-warning my-2 mr-2 my-sm-0">
+                       <i class="fas fa-sign-in-alt"></i> Đăng ký
+                    </router-link>
                 </div>
             </div>
         </nav>

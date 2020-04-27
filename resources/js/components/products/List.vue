@@ -34,9 +34,9 @@
                 <th width="5%">Sửa</th>
                 <th width="5%">Xóa</th>
             </thead>
-            <tbody>
+             <transition-group tag="tbody" name="view"  mode="out-in">
                 <tr v-for="(product,index) in products" :key="product.id">
-                    <th>{{parseInt(index += 1)}}</th>
+                    <th>{{parseInt(index + 1)}}</th>
                     <td><img :src="'/storage/cover_images/'+product.image" style="width: 50px;height: 50px;"></td>
                     <td>{{product.code}}</td>
                     <td>{{product.name}}</td>
@@ -57,7 +57,7 @@
                     <td><router-link :to="{name: 'product-edit' , params: {id: product.id}}" class="btn btn-warning">Sửa</router-link></td>
                     <td><button class="btn btn-danger" @click="removeProduct(index, product.id)">Xóa</button></td>
                 </tr>
-            </tbody>
+             </transition-group>
         </table>
         </template>
         <nav aria-label="...">

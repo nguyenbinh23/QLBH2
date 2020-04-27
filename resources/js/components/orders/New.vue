@@ -16,49 +16,50 @@
                 <button class="btn btn-success button-find" title="Tìm kiếm" @click="findProduct()"><i class="fa fa-search"></i></button>
             </div>
         </div>
-        <template v-if="!products.length">
+        <template v-if="products && products.length === 0">
             <div class="row justify-content-center">
                 <h3>Không có hàng hóa</h3>
             </div>
         </template>
-        <template v-else>
-        <table class="table table-bordered table-responsive text-white text-center">
-            <thead>
-                <th width="10%">Hình ảnh</th>
-                <th width="10%">Mã hàng hóa</th>
-                <th width="30%">Tên hàng hóa</th>
-                <th width="10%">Số lượng</th>
-                <th width="10%">Đơn vị</th>
-                <th width="20%">Bảng giá</th>
-                <th width="10%">Thêm</th>
-            </thead>
-            <tbody>
-                <tr v-for="product in products" :key="product.id">
-                    <th><img :src="'/storage/cover_images/'+product.image" style="width: 50px;height: 50px;"></th>
-                    <td>{{product.code}}</td>
-                    <td>{{product.name}}</td>
-                    <template v-if="product.quantity < 5">
-                        <td><span class="btn btn-outline-danger">Số lượng còn ít: {{product.quantity}}</span></td>
-                    </template>
-                    <template v-else>
-                        <td>{{product.quantity}}</td>
-                    </template>
-                    <td>{{product.unit}}</td>
-                    <td>
-                        <div class="form-group">
-                            <select class="form-control" v-model="product.price">
-                                <option
-                                 v-for="price_type in product.pricelist" :key="price_type.id"
-                                :selected="price_type.name === 'Giá bán lẻ'"
-                                :value="price_type.cost">
-                                {{price_type.name}}: {{price_type.cost | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</option>
-                            </select>
-                        </div>
-                    </td>
-                   <td><button v-if="addButton" @click="addProductToCart(product)" class="btn btn-outline-primary"><i class="fa fa-cart-plus"></i>  Thêm vào HĐ</button></td>
-                </tr>
-            </tbody>
-        </table>
+
+        <template name="view">
+            <table class="table table-bordered table-responsive text-white text-center">
+                <thead>
+                    <th width="10%">Hình ảnh</th>
+                    <th width="10%">Mã hàng hóa</th>
+                    <th width="30%">Tên hàng hóa</th>
+                    <th width="10%">Số lượng</th>
+                    <th width="10%">Đơn vị</th>
+                    <th width="20%">Bảng giá</th>
+                    <th width="10%">Thêm</th>
+                </thead>
+                <tbody>
+                    <tr v-for="product in products" :key="product.id">
+                        <th><img :src="'/storage/cover_images/'+product.image" style="width: 50px;height: 50px;"></th>
+                        <td>{{product.code}}</td>
+                        <td>{{product.name}}</td>
+                        <template v-if="product.quantity < 5">
+                            <td><span class="btn btn-outline-danger">Số lượng còn ít: {{product.quantity}}</span></td>
+                        </template>
+                        <template v-else>
+                            <td>{{product.quantity}}</td>
+                        </template>
+                        <td>{{product.unit}}</td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" v-model="product.price">
+                                    <option
+                                    v-for="price_type in product.pricelist" :key="price_type.id"
+                                    :selected="price_type.name === 'Giá bán lẻ'"
+                                    :value="price_type.cost">
+                                    {{price_type.name}}: {{price_type.cost | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</option>
+                                </select>
+                            </div>
+                        </td>
+                    <td><button v-if="addButton" @click="addProductToCart(product)" class="btn btn-outline-primary"><i class="fa fa-cart-plus"></i>  Thêm vào HĐ</button></td>
+                    </tr>
+                </tbody>
+            </table>
         </template>
         <nav aria-label="...">
             <ul class="pagination mt-2 justify-content-center">
@@ -95,42 +96,42 @@
                 <th scope="col" width="20%">Tổng</th>
                 <th scope="col" width="10%">Thao tác</th>
             </thead>
-            <tbody>
-                <tr scope="row" v-for="(product,index) in carts" :key="index">
-                    <th><img :src="'/storage/cover_images/'+product.image" style="width: 50px;height: 50px;"></th>
-                    <td>{{product.code}}</td>
-                    <td>{{product.name}}</td>
-                    <td>{{product.unit}}</td>
-                    <td v-if="activeIndexPrice === index">
-                        <div class="form-group">
-                            <p>Giá hiện tại: {{ product.price | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</p>
-                            <p v-if="tempPrice">Giá mới: {{ tempPrice | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</p>
-                            <input type="text" class="form-control" v-model="tempPrice">
-                            <button class="btn btn-success form-control mt-2" @click="changeCartItemPrice(product)">Thay đổi</button>
-                            <button class="btn btn-danger form-control mt-2" @click="unsetActiveIndexPrice()">Đóng</button>
-                        </div>
-                    </td>
-                    <td class="price-item" v-else @click="setActiveIndexPrice(index,product)">{{product.price | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</td>
-                    <td>
-                        <div class="form-group">
-                            <input type="number" min="0" class="form-control"
-                            v-model="product.quantity"
-                            @input="changeQuantity(product)">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-group">
-                            <input type="number" min="0" max="100" class="form-control"
-                            v-model="product.discount"
-                            @input="changeQuantity(product)">
-                        </div>
-                    </td>
-                    <td>
-                        {{product.totalprice | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}
-                    </td>
-                    <td><button @click="removeProductfromCart(index)" class="btn btn-outline-warning"><i class="fa fa-minus"></i> Xóa</button></td>
-                </tr>
-            </tbody>
+                <transition-group name="view" tag="tbody">
+                    <tr scope="row" v-for="(product,index) in carts" :key="product.id">
+                        <th><img :src="'/storage/cover_images/'+product.image" style="width: 50px;height: 50px;"></th>
+                        <td>{{product.code}}</td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.unit}}</td>
+                        <td v-if="activeIndexPrice === index">
+                            <div class="form-group">
+                                <p>Giá hiện tại: {{ product.price | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</p>
+                                <p v-if="tempPrice">Giá mới: {{ tempPrice | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</p>
+                                <input type="text" class="form-control" v-model="tempPrice">
+                                <button class="btn btn-success form-control mt-2" @click="changeCartItemPrice(product)">Thay đổi</button>
+                                <button class="btn btn-danger form-control mt-2" @click="unsetActiveIndexPrice()">Đóng</button>
+                            </div>
+                        </td>
+                        <td class="price-item" v-else @click="setActiveIndexPrice(index,product)">{{product.price | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</td>
+                        <td>
+                            <div class="form-group">
+                                <input type="number" min="0" class="form-control"
+                                v-model="product.quantity"
+                                @input="changeQuantity(product)">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <input type="number" min="0" max="100" class="form-control"
+                                v-model="product.discount"
+                                @input="changeQuantity(product)">
+                            </div>
+                        </td>
+                        <td>
+                            {{product.totalprice | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}
+                        </td>
+                        <td><button @click="removeProductfromCart(index)" class="btn btn-outline-warning"><i class="fa fa-minus"></i> Xóa</button></td>
+                    </tr>
+                </transition-group>
         </table>
         <div class="row">
            <div class="col text-right">
@@ -220,7 +221,7 @@
                 </template>
                 <div class="form-group">
                     <label for="TaxCode">Mã số thuế (Có thể nhập mã khác): </label>
-                    <input for="TaxCode" class="form-control" type="text" v-model="customer.tax_code">
+                    <input for="TaxCode" class="form-control" type="text" v-model="tax_code">
                 </div>
                 <div class="form-group">
                     <div class="row">
@@ -327,6 +328,7 @@
                                 <td>{{item.discount}} %</td>
                                 <td class="text-right">{{ item.totalprice | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</td>
                             </tr>
+
                             <tr>
                                 <td colspan="7" class="text-left">
                                     <div class="row">
@@ -346,14 +348,9 @@
                                             <p class="font-weight-bold">{{totalPriceAfterTaxOrderSuccess | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</p>
                                         </div>
                                     </div>
+                                   <p class="font-weight-bold" style="border-top: 1px solid #dee2e6; padding-top: 20px;">Số tiền viết bằng chữ: <span class="font-weight-light">{{DocTienBangChu(totalPriceAfterTaxOrderSuccess)}}</span></p>
                                 </td>
                             </tr>
-                            <tr>
-                                <td colspan="7" class="text-left">
-                                    <p class="font-weight-bold">Số tiền viết bằng chữ: <span class="font-weight-light">{{DocTienBangChu(totalPriceAfterTaxOrderSuccess)}}</span> </p>
-                                </td>
-                            </tr>
-
                         </tbody>
                     </table>
                     <div class="row mb-5">
@@ -402,6 +399,7 @@ export default {
                 tax_code: '',
                 sorting: '',
             },
+            tax_code: '',
             products: [],
             categories: [],
             next_page_url: null,
@@ -546,12 +544,14 @@ export default {
                     }
                 })
                     .then((res) => {
+                        this.products = []
                         this.products = res.data.data
                         this.next_page_url = res.data.next_page_url
                         this.prev_page_url = res.data.prev_page_url
                         this.last_page_url = res.data.last_page_url
                         this.first_page_url = res.data.first_page_url
                         this.current_page = res.data.current_page
+
                     })
                     .catch((error) => {
                         console.log(error)
@@ -651,11 +651,7 @@ export default {
                         this.alert = 'Đã Lưu <i class="fas fa-check"></i>'
                         this.findProduct()
                         this.fetchCustomers()
-                        if(this.order_success.kind === 'banhang'){
-                            setTimeout(() => {
-                                this.printOrder()
-                            },3000)
-                        }
+                        this.try()
                     })
                     .catch((error) => {
                         this.alert ='Lưu thất bại <i class="fas fa-times"></i>'
@@ -691,11 +687,7 @@ export default {
                         this.alert = 'Đã Lưu <i class="fas fa-check"></i>'
                         this.findProduct()
                         this.fetchCustomers()
-                        if(this.order_success.kind === 'banhang'){
-                            setTimeout(() => {
-                                this.printOrder()
-                            },3000)
-                        }
+                        this.try()
                     })
                     .catch((error) => {
                         this.alert ='Lưu thất bại <i class="fas fa-times"></i>'
@@ -732,11 +724,7 @@ export default {
                         this.alert = 'Đã Lưu <i class="fas fa-check"></i>'
                         this.findProduct()
                         this.fetchCustomers()
-                        if(this.order_success.kind === 'banhang'){
-                            setTimeout(() => {
-                                this.printOrder()
-                            },3000)
-                        }
+                        this.try()
                     })
                     .catch((error) => {
                         this.alert ='Lưu thất bại <i class="fas fa-times"></i>'
@@ -775,6 +763,7 @@ export default {
             }
         },
         setCustomer(result){
+            this.tax_code = result.tax_code
             this.searchQuery = result.name
             this.customer = result
             this.modal = false
@@ -793,8 +782,17 @@ export default {
         printOrder(){
             this.$htmlToPaper('hoadon');
         },
-        DocSo3ChuSo(baso)
-        {
+        try(){
+            let vm = this
+            var checkExist = setInterval(() => {
+                if(vm.order_success !== null && vm.order_success.kind !== 'nhaphang') {
+                    console.log("Exists!");
+                    clearInterval(checkExist);
+                    vm.printOrder()
+                }
+            }, 100);
+        },
+        DocSo3ChuSo(baso){
             var ChuSo=new Array(" không "," một "," hai "," ba "," bốn "," năm "," sáu "," bảy "," tám "," chín ");
 
             var tram;
@@ -847,8 +845,7 @@ export default {
                 }
             return KetQua;
         },
-        DocTienBangChu(SoTien)
-        {
+        DocTienBangChu(SoTien){
             var Tien=new Array("đồng", " nghìn", " triệu", " tỷ", " nghìn tỷ", " triệu tỷ");
 
             var lan=0;
@@ -891,45 +888,45 @@ export default {
             if(isNaN(ViTri[1]))
                 ViTri[1] = "0";
             ViTri[0] = parseInt(so % 1000);
-        if(isNaN(ViTri[0]))
-                ViTri[0] = "0";
-            if (ViTri[5] > 0)
-            {
-                lan = 5;
+            if(isNaN(ViTri[0]))
+                    ViTri[0] = "0";
+                if (ViTri[5] > 0)
+                {
+                    lan = 5;
+                }
+                else if (ViTri[4] > 0)
+                {
+                    lan = 4;
+                }
+                else if (ViTri[3] > 0)
+                {
+                    lan = 3;
+                }
+                else if (ViTri[2] > 0)
+                {
+                    lan = 2;
+                }
+                else if (ViTri[1] > 0)
+                {
+                    lan = 1;
+                }
+                else
+                {
+                    lan = 0;
+                }
+                for (i = lan; i >= 0; i--)
+                {
+                tmp = this.DocSo3ChuSo(ViTri[i]);
+                KetQua += tmp;
+                if (ViTri[i] > 0) KetQua += Tien[i];
+                if ((i > 0) && (tmp.length > 0)) KetQua += ',';//&& (!string.IsNullOrEmpty(tmp))
             }
-            else if (ViTri[4] > 0)
+            if (KetQua.substring(KetQua.length - 1) == ',')
             {
-                lan = 4;
+                    KetQua = KetQua.substring(0, KetQua.length - 1);
             }
-            else if (ViTri[3] > 0)
-            {
-                lan = 3;
-            }
-            else if (ViTri[2] > 0)
-            {
-                lan = 2;
-            }
-            else if (ViTri[1] > 0)
-            {
-                lan = 1;
-            }
-            else
-            {
-                lan = 0;
-            }
-            for (i = lan; i >= 0; i--)
-            {
-            tmp = this.DocSo3ChuSo(ViTri[i]);
-            KetQua += tmp;
-            if (ViTri[i] > 0) KetQua += Tien[i];
-            if ((i > 0) && (tmp.length > 0)) KetQua += ',';//&& (!string.IsNullOrEmpty(tmp))
-        }
-        if (KetQua.substring(KetQua.length - 1) == ',')
-        {
-                KetQua = KetQua.substring(0, KetQua.length - 1);
-        }
-        KetQua = KetQua.substring(1,2).toUpperCase()+ KetQua.substring(2);
-        return KetQua;//.substring(0, 1);//.toUpperCase();// + KetQua.substring(1);
+            KetQua = KetQua.substring(1,2).toUpperCase()+ KetQua.substring(2);
+            return KetQua;//.substring(0, 1);//.toUpperCase();// + KetQua.substring(1);
         }
     }
 }

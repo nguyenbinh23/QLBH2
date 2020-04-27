@@ -7,6 +7,7 @@ use App\Order;
 use App\Product;
 use Illuminate\Http\Request;
 use App\OrderDetail;
+use App\ProductStatics;
 use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
@@ -61,6 +62,10 @@ class OrderController extends Controller
                 $product = Product::find($item->id);
                 $product->quantity += $item->quantity;
                 $product->save();
+
+                $product_statics = ProductStatics::where('product_id',$item->id)->first();
+                $product_statics->buy_quantity += $item->quantity;
+                $product_statics->save();
             }
         else{
             foreach(json_decode($request->carts) as $item)
@@ -81,6 +86,10 @@ class OrderController extends Controller
                 $product = Product::find($item->id);
                 $product->quantity -= $item->quantity;
                 $product->save();
+
+                $product_statics = ProductStatics::where('product_id',$item->id)->first();
+                $product_statics->sell_quantity += $item->quantity;
+                $product_statics->save();
             }
         }
         $orderWithOrderDetails = Order::where('id',$order->id)->with('order_details')->first();
@@ -134,6 +143,10 @@ class OrderController extends Controller
                 $product = Product::find($item->id);
                 $product->quantity += $item->quantity;
                 $product->save();
+
+                $product_statics = ProductStatics::where('product_id',$item->id)->first();
+                $product_statics->buy_quantity += $item->quantity;
+                $product_statics->save();
             }
         else{
             foreach(json_decode($request->carts) as $item)
@@ -154,6 +167,10 @@ class OrderController extends Controller
                 $product = Product::find($item->id);
                 $product->quantity -= $item->quantity;
                 $product->save();
+
+                $product_statics = ProductStatics::where('product_id',$item->id)->first();
+                $product_statics->sell_quantity += $item->quantity;
+                $product_statics->save();
             }
         }
         $orderWithOrderDetails = Order::where('id',$order->id)->with('order_details')->first();
@@ -199,6 +216,10 @@ class OrderController extends Controller
                 $product = Product::find($item->id);
                 $product->quantity += $item->quantity;
                 $product->save();
+
+                $product_statics = ProductStatics::where('product_id',$item->id)->first();
+                $product_statics->buy_quantity += $item->quantity;
+                $product_statics->save();
             }
         else{
             foreach(json_decode($request->carts) as $item)
@@ -219,6 +240,10 @@ class OrderController extends Controller
                 $product = Product::find($item->id);
                 $product->quantity -= $item->quantity;
                 $product->save();
+
+                $product_statics = ProductStatics::where('product_id',$item->id)->first();
+                $product_statics->sell_quantity += $item->quantity;
+                $product_statics->save();
             }
         }
         $orderWithOrderDetails = Order::where('id',$order->id)->with('order_details')->first();
@@ -253,6 +278,10 @@ class OrderController extends Controller
                 {
                     $product->quantity += $item->quantity;
                     $product->save();
+
+                    $product_statics = ProductStatics::where('product_id',$item->product_id)->first();
+                    $product_statics->sell_quantity -= $item->quantity;
+                    $product_statics->save();
                 }
                 OrderDetail::where('id',$item->id)->delete();
             }
@@ -264,6 +293,10 @@ class OrderController extends Controller
                 {
                     $product->quantity -= $item->quantity;
                     $product->save();
+
+                    $product_statics = ProductStatics::where('product_id',$item->product_id)->first();
+                    $product_statics->buy_quantity -= $item->quantity;
+                    $product_statics->save();
                 }
                 OrderDetail::where('id',$item->id)->delete();
             }
@@ -282,6 +315,11 @@ class OrderController extends Controller
         if($request->kind == 'nhaphang')
             foreach(json_decode($request->carts) as $item)
             {
+                $product_statics = ProductStatics::where('product_id',$item->product_id)->first();
+                $product_statics->buy_quantity += $item->quantity;
+                $product_statics->save();
+
+
                 $order_detail = new OrderDetail;
                 $order_detail->product_id = $item->product_id;
                 $order_detail->order_id = $order->id;
@@ -302,6 +340,10 @@ class OrderController extends Controller
         else{
             foreach(json_decode($request->carts) as $item)
             {
+                $product_statics = ProductStatics::where('product_id',$item->product_id)->first();
+                $product_statics->sell_quantity += $item->quantity;
+                $product_statics->save();
+
                 $order_detail = new OrderDetail;
                 $order_detail->product_id = $item->product_id;
                 $order_detail->order_id = $order->id;
@@ -318,6 +360,8 @@ class OrderController extends Controller
                 $product = Product::find($item->product_id);
                 $product->quantity -= $item->quantity;
                 $product->save();
+
+
             }
         }
 
@@ -350,6 +394,10 @@ class OrderController extends Controller
                 {
                     $product->quantity += $item->quantity;
                     $product->save();
+
+                    $product_statics = ProductStatics::where('product_id',$item->product_id)->first();
+                    $product_statics->sell_quantity -= $item->quantity;
+                    $product_statics->save();
                 }
                 OrderDetail::where('id',$item->id)->delete();
             }
@@ -361,6 +409,10 @@ class OrderController extends Controller
                 {
                     $product->quantity -= $item->quantity;
                     $product->save();
+
+                    $product_statics = ProductStatics::where('product_id',$item->product_id)->first();
+                    $product_statics->buy_quantity -= $item->quantity;
+                    $product_statics->save();
                 }
                 OrderDetail::where('id',$item->id)->delete();
             }
@@ -379,6 +431,10 @@ class OrderController extends Controller
         if($request->kind == 'nhaphang')
             foreach(json_decode($request->carts) as $item)
             {
+                $product_statics = ProductStatics::where('product_id',$item->product_id)->first();
+                $product_statics->buy_quantity += $item->quantity;
+                $product_statics->save();
+
                 $order_detail = new OrderDetail;
                 $order_detail->product_id = $item->product_id;
                 $order_detail->order_id = $order->id;
@@ -399,6 +455,10 @@ class OrderController extends Controller
         else{
             foreach(json_decode($request->carts) as $item)
             {
+                $product_statics = ProductStatics::where('product_id',$item->product_id)->first();
+                $product_statics->sell_quantity += $item->quantity;
+                $product_statics->save();
+
                 $order_detail = new OrderDetail;
                 $order_detail->product_id = $item->product_id;
                 $order_detail->order_id = $order->id;
@@ -445,6 +505,10 @@ class OrderController extends Controller
                 {
                     $product->quantity += $item->quantity;
                     $product->save();
+
+                    $product_statics = ProductStatics::where('product_id',$item->product_id)->first();
+                    $product_statics->sell_quantity -= $item->quantity;
+                    $product_statics->save();
                 }
                 OrderDetail::where('id',$item->id)->delete();
             }
@@ -456,6 +520,10 @@ class OrderController extends Controller
                 {
                     $product->quantity -= $item->quantity;
                     $product->save();
+
+                    $product_statics = ProductStatics::where('product_id',$item->product_id)->first();
+                    $product_statics->buy_quantity -= $item->quantity;
+                    $product_statics->save();
                 }
                 OrderDetail::where('id',$item->id)->delete();
             }
@@ -471,6 +539,10 @@ class OrderController extends Controller
         if($request->kind == 'nhaphang')
             foreach(json_decode($request->carts) as $item)
             {
+                $product_statics = ProductStatics::where('product_id',$item->product_id)->first();
+                $product_statics->buy_quantity += $item->quantity;
+                $product_statics->save();
+
                 $order_detail = new OrderDetail;
                 $order_detail->product_id = $item->product_id;
                 $order_detail->order_id = $order->id;
@@ -491,6 +563,10 @@ class OrderController extends Controller
         else{
             foreach(json_decode($request->carts) as $item)
             {
+                $product_statics = ProductStatics::where('product_id',$item->product_id)->first();
+                $product_statics->sell_quantity += $item->quantity;
+                $product_statics->save();
+
                 $order_detail = new OrderDetail;
                 $order_detail->product_id = $item->product_id;
                 $order_detail->order_id = $order->id;
@@ -575,6 +651,10 @@ class OrderController extends Controller
                 {
                     $product->quantity -= $item->quantity;
                     $product->save();
+
+                    $product_statics = ProductStatics::where('product_id',$item->id)->first();
+                    $product_statics->buy_quantity -= $item->quantity;
+                    $product_statics->save();
                 }
             }
         if($order->kind == 'banhang')
@@ -586,6 +666,10 @@ class OrderController extends Controller
                 {
                     $product->quantity += $item->quantity;
                     $product->save();
+
+                    $product_statics = ProductStatics::where('product_id',$item->id)->first();
+                    $product_statics->sell_quantity -= $item->quantity;
+                    $product_statics->save();
                 }
             }
         }

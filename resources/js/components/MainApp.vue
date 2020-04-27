@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid">
-        <vue-progress-bar></vue-progress-bar>
+    <vue-progress-bar></vue-progress-bar>
         <transition name="slide-fade">
             <router-view></router-view>
         </transition>
@@ -34,5 +34,20 @@ import GoTop from '@inotom/vue-go-top'
     /* .slide-fade-leave-active below version 2.1.8 */ {
         transform: translateX(10px);
         opacity: 0;
+    }
+
+    .view-enter-active, .view-leave-active {
+    transition: opacity 0.2s ease-in-out;
+    transform: 0.2 ease;
+    }
+    .view-enter-active {
+        transition-delay: 0.2s;
+    }
+    .view-enter, .view-leave-to {
+        opacity: 0;
+    }
+    .view-enter-to, .view-leave {
+        opacity: 1;
+        color: #f34949;
     }
 </style>

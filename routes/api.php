@@ -52,6 +52,7 @@ Route::group(['middleware' => ['jwt.auth','admin']], function($router){
 
 
     //Product
+    Route::get('products/all','ProductController@all');
     Route::post('products/add','ProductController@add');
     Route::get('products','ProductController@list');
     Route::get('products/{id}','ProductController@index');
@@ -74,4 +75,5 @@ Route::group(['middleware' => ['jwt.auth','admin']], function($router){
 
     //Statistic
     Route::get('statistics','StatisticController@profitAndLossStatement');
+    Route::post('statistics/products','StatisticController@statisticProducts');
 });

@@ -11,7 +11,6 @@
     },
     "devDependencies": {
         "axios": "^0.19",
-        "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
         "jquery": "^3.2",
         "laravel-mix": "^5.0.1",
@@ -25,7 +24,10 @@
     },
     "dependencies": {
         "@inotom/vue-go-top": "^1.3.0",
+        "bootstrap": "^4.4.1",
+        "bootstrap-vue": "^2.12.0",
         "validate.js": "^0.13.1",
+        "vue-full-loading": "^1.2.1",
         "vue-google-charts": "^0.3.2",
         "vue-html-to-paper": "^1.3.1",
         "vue-input-dropdown": "^0.1.9",

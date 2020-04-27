@@ -28,15 +28,15 @@
                             <th scope="col" width="15%">Sửa</th>
                             <th scope="col" width="15%">Xóa</th>
                         </thead>
-                        <tbody>
+                         <transition-group tag="tbody" name="view">
                             <tr v-for="(category,index) in categories" :key="category.id">
-                                <th>{{parseInt(index += 1)}}</th>
+                                <th>{{parseInt(index + 1)}}</th>
                                 <td>{{category.category_name}}</td>
                                 <td>{{category.category_code}}</td>
                                 <td><router-link :to="{name: 'category-edit' , params: {id: category.id}}" class="btn btn-warning">Sửa</router-link></td>
                                 <td><button class="btn btn-danger" @click="removeCategory(index,category.id)">Xóa</button></td>
                             </tr>
-                        </tbody>
+                         </transition-group>
                     </table>
                 </div>
             </div>

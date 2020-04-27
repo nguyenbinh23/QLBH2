@@ -24,4 +24,10 @@ class Product extends Model
     {
         return $this->belongsTo('App\Unit');
     }
+    public function order_details(){
+        return $this->hasMany('App\OrderDetails','product_id');
+    }
+    public function product_statics(){
+        return $this->hasMany('App\ProductStatics','product_id');
+    }
 }

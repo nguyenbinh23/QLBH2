@@ -169,13 +169,13 @@ export default {
             let formData = new FormData()
 
             this.files = this.$refs.files.files
-            this.product_image = this.$refs.files2.files[0];
-
             for( var i = 0; i < this.files.length; i++ ){
                 let file = this.files[i];
                 formData.append('files['+i+']',file);
             }
-            formData.append('product_image',this.product_image)
+            if(typeof this.$refs.files2.files[0] !== 'undefined'){
+                formData.append('product_image',this.$refs.files2.files[0])
+            }
             formData.append('name',this.product.name)
             formData.append('code',this.product.code)
             formData.append('description',this.product.description)

@@ -33,9 +33,9 @@
                 <th width="5%">Sửa</th>
                 <th width="5%">Xóa</th>
             </thead>
-            <tbody>
+             <transition-group tag="tbody" name="view">
                 <tr v-for="(customer,index) in customers" :key="customer.id">
-                    <th>{{parseInt(index += 1)}}</th>
+                    <th>{{parseInt(index + 1)}}</th>
                     <td>{{customer.name}}</td>
                     <td>{{customer.address}}</td>
                     <td>{{customer.email}}</td>
@@ -44,7 +44,7 @@
                     <td><router-link :to="{name: 'customer-edit' , params: {id: customer.id}}" class="btn btn-warning">Sửa</router-link></td>
                     <td><button class="btn btn-danger" @click="removeCustomer(index,customer.id)">Xóa</button></td>
                 </tr>
-            </tbody>
+             </transition-group>
         </table>
         </template>
         <nav aria-label="...">

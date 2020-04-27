@@ -1,6 +1,6 @@
 <template>
     <div class="row justify-content-center">
-        <div class="col-md-4 mt-5">
+        <div class="col-10 col-sm-8 col-md-8 col-lg-6 col-xl-4 mt-5">
             <div class="card">
                 <div class="card-header bg-success text-white">Đăng nhập</div>
                 <div class="card-body bg-dark text-white">

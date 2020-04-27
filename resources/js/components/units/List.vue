@@ -28,15 +28,15 @@
                             <th scope="col" width="15%">Sửa</th>
                             <th scope="col" width="15%">Xóa</th>
                         </thead>
-                        <tbody>
+                        <transition-group tag="tbody" name="view">
                             <tr v-for="(unit,index) in units" :key="unit.id">
-                                <th>{{parseInt(index += 1)}}</th>
+                                <th>{{parseInt(index + 1)}}</th>
                                 <td>{{unit.name}}</td>
                                 <td>{{unit.code}}</td>
                                 <td><router-link :to="{name: 'unit-edit' , params: {id: unit.id}}" class="btn btn-warning">Sửa</router-link></td>
                                 <td><button class="btn btn-danger" @click="removeUnit(index,unit.id)">Xóa</button></td>
                             </tr>
-                        </tbody>
+                        </transition-group>
                     </table>
                 </div>
             </div>
@@ -99,26 +99,8 @@ export default {
         this.findUnit()
     },
     methods: {
-        fetchUnits(page_url){
-            page_url = page_url || 'http://localhost:8000/api/units'
-            axios.get(page_url,{
-                headers: {
-                    'Authorization': 'Bearer '+this.currentUser.token,
-                }
-            }).then((res) => {
-                this.units = res.data.data
-                this.next_page_url = res.data.next_page_url
-                this.prev_page_url = res.data.prev_page_url
-                this.last_page_url = res.data.last_page_url
-                this.first_page_url = res.data.first_page_url
-                this.current_page = res.data.current_page
-            }).catch((err) => {
-                console.log(err)
-            })
-        },
         removeUnit(index,id){
             if(confirm('Bạn có muốn xóa đơn vị này')){
-                this.units.splice(index,1)
                 axios.post('/api/units/remove',{
                     id: id
                 },
@@ -127,37 +109,39 @@ export default {
                         "Authorization": 'Bearer '+this.currentUser.token
                     }
                 })
-                    .then((res) => {
-                        alert('Xóa thành công')
-                    })
-                    .catch((error) => {
-                        alert('Xóa thất bại')
-                    })
+                .then((res) => {
+                    this.units.splice(index,1)
+                    alert('Xóa thành công')
+                })
+                .catch((error) => {
+                    alert('Xóa thất bại')
+                })
             }
         },
-
-        findUnit(){
-            axios.post('/api/units/find',
-                {
-                    name: this.name_find,
-                    code: this.name_find,
-                },
-                {
-                    headers: {
-                        "Authorization": 'Bearer '+this.currentUser.token
-                    }
-                })
-                    .then((res) => {
-                        this.units = res.data.data
-                        this.next_page_url = res.data.next_page_url
-                        this.prev_page_url = res.data.prev_page_url
-                        this.last_page_url = res.data.last_page_url
-                        this.first_page_url = res.data.first_page_url
-                        this.current_page = res.data.current_page
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                    })
+        findUnit(page_url){
+            page_url = page_url || '/api/units/find'
+            axios.post(page_url,
+            {
+                name: this.name_find,
+                code: this.name_find,
+            },
+            {
+                headers: {
+                    "Authorization": 'Bearer '+this.currentUser.token
+                }
+            })
+            .then((res) => {
+                this.units = []
+                this.units = res.data.data
+                this.next_page_url = res.data.next_page_url
+                this.prev_page_url = res.data.prev_page_url
+                this.last_page_url = res.data.last_page_url
+                this.first_page_url = res.data.first_page_url
+                this.current_page = res.data.current_page
+            })
+            .catch((error) => {
+                console.log(error)
+            })
         },
         refreshUnit(){
             this.name_find = ''

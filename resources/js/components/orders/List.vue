@@ -23,23 +23,24 @@
             </div>
         </template>
         <template v-else>
-        <table class="table table-bordered table-responsive text-white text-center">
-            <thead>
-                <th width="5%">#</th>
-                <th width="20%">Tên khách hàng</th>
-                <th width="20%">Địa chỉ</th>
-                <th width="10%">Số điện thoại</th>
-                <th width="10%">Mã số thuế</th>
-                <th width="5%">Thuế</th>
-                <th width="5%">Giảm giá</th>
-                <th width="10%">Tổng giá trị</th>
-                <th width="5%">Chi tiết HĐ</th>
-                <th width="5%">Sửa</th>
-                <th width="5%">Xóa</th>
-            </thead>
-            <tbody>
+
+            <table class="table table-bordered table-responsive text-white text-center">
+                <thead>
+                    <th width="5%">#</th>
+                    <th width="20%">Tên khách hàng</th>
+                    <th width="20%">Địa chỉ</th>
+                    <th width="10%">Số điện thoại</th>
+                    <th width="10%">Mã số thuế</th>
+                    <th width="5%">Thuế</th>
+                    <th width="5%">Giảm giá</th>
+                    <th width="10%">Tổng giá trị</th>
+                    <th width="5%">Chi tiết HĐ</th>
+                    <th width="5%">Sửa</th>
+                    <th width="5%">Xóa</th>
+                </thead>
+                <transition-group name="view" tag="tbody">
                 <tr v-for="(order,index) in orders" :key="order.id">
-                    <th>{{parseInt(index += 1)}}</th>
+                    <th>{{parseInt(index + 1)}}</th>
                     <td>{{order.name}}</td>
                     <td>{{order.address}}</td>
                     <td>{{order.phone}}</td>
@@ -51,8 +52,9 @@
                     <td><router-link :to="{name: 'order-edit' , params: {id: order.id}}" class="btn btn-warning">Sửa</router-link></td>
                     <td><button class="btn btn-danger" @click="removeOrder(index,order.id)">Xóa</button></td>
                 </tr>
-            </tbody>
-        </table>
+                </transition-group>
+            </table>
+
         </template>
         <nav aria-label="...">
             <ul class="pagination mt-2 justify-content-center">
@@ -174,14 +176,9 @@
                                             <p class="font-weight-bold">{{ order_selected.total_price | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
                                         </div>
                                     </div>
+                                  <p class="font-weight-bold" style="border-top: 1px solid #dee2e6; padding-top: 20px;">Số tiền viết bằng chữ: <span class="font-weight-light">{{DocTienBangChu(order_selected.total_price)}}</span></p>
                                 </td>
                             </tr>
-                            <tr>
-                                <td colspan="7" class="text-left">
-                                    <p class="font-weight-bold">Số tiền viết bằng chữ: <span class="font-weight-light">{{DocTienBangChu(order_selected.total_price)}}</span></p>
-                                </td>
-                            </tr>
-
                         </tbody>
                     </table>
                     <div class="row mb-5">
@@ -461,5 +458,8 @@ export default {
 }
 .order-bottom {
     height: 200px;
+}
+.bordered {
+    border-top: 1px solid #000;
 }
 </style>
