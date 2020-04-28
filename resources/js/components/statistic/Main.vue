@@ -287,7 +287,9 @@ export default {
         handleStatisticProduct(){
             this.loading = true
             axios.post('/api/statistics/products',{
-                selected: JSON.stringify(this.selected)
+                selected: JSON.stringify(this.selected),
+                from_date: this.from_date,
+                to_date: this.to_date
             },{
                 headers: {
                     "Authorization": 'Bearer '+this.currentUser.token

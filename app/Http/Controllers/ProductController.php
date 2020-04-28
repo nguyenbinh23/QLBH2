@@ -7,11 +7,8 @@ use App\Imports\ProductImport;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
-use App\OrderDetail;
 use App\PriceList;
 use App\Unit;
-use App\Order;
-use App\ProductStatics;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
@@ -108,10 +105,7 @@ class ProductController extends Controller
             $price->product_id = $id;
             $price->save();
         }
-        $product_statics = new ProductStatics;
-        $product_statics->product_name = $product->name;
-        $product_statics->product_id = $id;
-        $product_statics->save();
+
 
         return response()->json($product);
     }
@@ -398,7 +392,6 @@ class ProductController extends Controller
 
 
         PriceList::where('product_id',$request->id)->delete();
-        ProductStatics::where('product_id',$request->id)->delete();
 
         return response()->json('Xóa thành công',200);
     }
@@ -440,7 +433,7 @@ class ProductController extends Controller
                         '7.required' => 'Không được bỏ trống giá bán sỉ',
                         '8.required' => 'Không được bỏ trống giá bán lẻ',
                     ])->validate();
-                    
+
                     $id_category = Category::where('category_code',$item[5])->first()->id;
                     $unit = Unit::where('code',$item[3])->first();
 
@@ -454,10 +447,6 @@ class ProductController extends Controller
                     $product->category_id = intval($id_category);
                     $product->save();
 
-                    $product_statics = new ProductStatics;
-                    $product_statics->product_name = $product->name;
-                    $product_statics->product_id = $product->id;
-                    $product_statics->save();
 
                     $price1 = new PriceList;
                     $price1->name = 'Giá nhập';

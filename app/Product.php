@@ -27,7 +27,4 @@ class Product extends Model
     public function order_details(){
         return $this->hasMany('App\OrderDetails','product_id');
     }
-    public function product_statics(){
-        return $this->hasMany('App\ProductStatics','product_id');
-    }
 }
