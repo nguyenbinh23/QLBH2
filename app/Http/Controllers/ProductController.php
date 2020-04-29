@@ -404,9 +404,6 @@ class ProductController extends Controller
             }
         }
         $product->delete();
-
-
-
         PriceList::where('product_id',$request->id)->delete();
 
         return response()->json('Xóa thành công',200);
