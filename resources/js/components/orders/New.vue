@@ -52,7 +52,7 @@
                                     v-for="price_type in product.pricelist" :key="price_type.id"
                                     :selected="price_type.name === 'Giá bán lẻ'"
                                     :value="price_type.cost">
-                                    {{price_type.name}}: {{price_type.cost | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</option>
+                                    {{price_type.name}}: {{price_type.cost | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</option>
                                 </select>
                             </div>
                         </td>
@@ -104,14 +104,14 @@
                         <td>{{product.unit}}</td>
                         <td v-if="activeIndexPrice === index">
                             <div class="form-group">
-                                <p>Giá hiện tại: {{ product.price | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</p>
-                                <p v-if="tempPrice">Giá mới: {{ tempPrice | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</p>
+                                <p>Giá hiện tại: {{ product.price | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</p>
+                                <p v-if="tempPrice">Giá mới: {{ tempPrice | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</p>
                                 <input type="text" class="form-control" v-model="tempPrice">
                                 <button class="btn btn-success form-control mt-2" @click="changeCartItemPrice(product)">Thay đổi</button>
                                 <button class="btn btn-danger form-control mt-2" @click="unsetActiveIndexPrice()">Đóng</button>
                             </div>
                         </td>
-                        <td class="price-item" v-else @click="setActiveIndexPrice(index,product)">{{product.price | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</td>
+                        <td class="price-item" v-else @click="setActiveIndexPrice(index,product)">{{product.price | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</td>
                         <td>
                             <div class="form-group">
                                 <input type="number" min="0" class="form-control"
@@ -127,7 +127,7 @@
                             </div>
                         </td>
                         <td>
-                            {{product.totalprice | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}
+                            {{product.totalprice | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}
                         </td>
                         <td><button @click="removeProductfromCart(index)" class="btn btn-outline-warning"><i class="fa fa-minus"></i> Xóa</button></td>
                     </tr>
@@ -144,7 +144,7 @@
                 <h4><span class="badge badge-warning">Có {{carts.length}} mặt hàng trong hóa đơn</span></h4>
             </div>
             <div class="col">
-                <h4 class="text-right"><span class="badge badge-danger">Tổng: {{totalPrice | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</span></h4>
+                <h4 class="text-right"><span class="badge badge-danger">Tổng: {{totalPrice | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</span></h4>
             </div>
         </div>
         <hr>
@@ -171,7 +171,7 @@
                     <h5>Thông tin khách hàng: </h5>
                 </div>
                 <div class="form-group">
-                    <label for="SearchQuery">Nhập tên khách hàng cần tìm: </label>
+                    <label for="SearchQuery">Nhập tên khách hàng: </label>
                     <input id="SearchQuery" class="form-control" autocomplete="off" placeholder="Có thể nhập email hoặc phone để tìm" type="text"
                     v-model="searchQuery"
                     @focus="modal = true" @input="removeSelectedCustomer()">
@@ -236,7 +236,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <h5 class="text-right">Tổng giá trị hóa đơn (Bao gồm VAT và DISCOUNT): </h5><h3 class="text-right"><span class="badge badge-danger">{{totalpriceAfterTaxAndDiscount | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})  }}</span></h3>
+                    <h5 class="text-right">Tổng giá trị hóa đơn (Bao gồm VAT và DISCOUNT): </h5><h3 class="text-right"><span class="badge badge-danger">{{totalpriceAfterTaxAndDiscount | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})  }}</span></h3>
                 </div>
                 <div class="form-group" v-if="alert">
                     <p class="text-center" v-html=" alert">{{alert}}</p>
@@ -324,9 +324,9 @@
                                 <td>{{item.product_name}}</td>
                                 <td>{{item.unit}}</td>
                                 <td>{{item.quantity}}</td>
-                                <td>{{item.price | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</td>
+                                <td>{{item.price | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</td>
                                 <td>{{item.discount}} %</td>
-                                <td class="text-right">{{ item.totalprice | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</td>
+                                <td class="text-right">{{ item.totalprice | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</td>
                             </tr>
 
                             <tr>
@@ -342,10 +342,10 @@
                                             <p class="font-weight-bold">Tổng tiền hàng sau thuế: </p>
                                         </div>
                                         <div class="col text-right">
-                                            <p class="font-weight-bold">{{totalPriceOrderSuccess | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
-                                            <p class="font-weight-bold">{{totalPriceOrderSuccess * ( order_success.discount / 100) | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
-                                            <p class="font-weight-bold">{{taxOrderSuccess | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</p>
-                                            <p class="font-weight-bold">{{totalPriceAfterTaxOrderSuccess | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</p>
+                                            <p class="font-weight-bold">{{totalPriceOrderSuccess | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
+                                            <p class="font-weight-bold">{{totalPriceOrderSuccess * ( order_success.discount / 100) | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
+                                            <p class="font-weight-bold">{{taxOrderSuccess | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</p>
+                                            <p class="font-weight-bold">{{totalPriceAfterTaxOrderSuccess | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</p>
                                         </div>
                                     </div>
                                    <p class="font-weight-bold" style="border-top: 1px solid #dee2e6; padding-top: 20px;">Số tiền viết bằng chữ: <span class="font-weight-light">{{DocTienBangChu(totalPriceAfterTaxOrderSuccess)}}</span></p>

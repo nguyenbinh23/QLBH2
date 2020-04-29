@@ -51,7 +51,7 @@
                             <input type="text" class="form-control" v-model="price_type.cost">
                         </div>
                         <div class="col">
-                            <h3 class="form-inline"><span class="badge badge-danger">{{price_type.cost | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</span></h3>
+                            <h3 class="form-inline"><span class="badge badge-danger">{{price_type.cost | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</span></h3>
                         </div>
                     </div>
                 </div>

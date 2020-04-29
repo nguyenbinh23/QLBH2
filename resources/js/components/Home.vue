@@ -1,7 +1,7 @@
 <template>
     <div>
          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <router-link to="/"><a class="navbar-brand" href="#">MINHTUANTECH</a></router-link>
+            <router-link to="/"><a class="navbar-brand" href="#">TUANMINHTECH</a></router-link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

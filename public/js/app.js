@@ -78991,7 +78991,7 @@ var render = function() {
       [
         _c("router-link", { attrs: { to: "/" } }, [
           _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-            _vm._v("MINHTUANTECH")
+            _vm._v("TUANMINHTECH")
           ])
         ]),
         _vm._v(" "),
@@ -79526,7 +79526,7 @@ var render = function() {
       [
         _c("router-link", { attrs: { to: "/" } }, [
           _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-            _vm._v("MINHTUANTECH")
+            _vm._v("TUANMINHTECH")
           ])
         ]),
         _vm._v(" "),
@@ -82178,7 +82178,7 @@ var render = function() {
                       _c("td", [
                         _vm._v(
                           _vm._s(
-                            _vm._f("currency")(order.total_price, "VND", 0, {
+                            _vm._f("currency")(order.total_price, "đ", 0, {
                               thousandsSeparator: ",",
                               spaceBetweenAmountAndSymbol: true,
                               symbolOnLeft: false
@@ -82518,7 +82518,7 @@ var render = function() {
                               _c("td", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("currency")(item.price, "VND", 0, {
+                                    _vm._f("currency")(item.price, "đ", 0, {
                                       thousandsSeparator: ",",
                                       spaceBetweenAmountAndSymbol: true,
                                       symbolOnLeft: false
@@ -82537,7 +82537,7 @@ var render = function() {
                                         item.quantity *
                                           item.price *
                                           (item.discount / 100),
-                                      "VND",
+                                      "đ",
                                       0,
                                       {
                                         thousandsSeparator: ",",
@@ -82624,7 +82624,7 @@ var render = function() {
                                           _vm._s(
                                             _vm._f("currency")(
                                               _vm.totalPrice,
-                                              "VND",
+                                              "đ",
                                               0,
                                               {
                                                 thousandsSeparator: ",",
@@ -82647,7 +82647,7 @@ var render = function() {
                                               _vm.totalPrice *
                                                 (_vm.order_selected.discount /
                                                   100),
-                                              "VND",
+                                              "đ",
                                               0,
                                               {
                                                 thousandsSeparator: ",",
@@ -82669,7 +82669,7 @@ var render = function() {
                                             _vm._f("currency")(
                                               _vm.totalPrice *
                                                 (_vm.order_selected.tax / 100),
-                                              "VND",
+                                              "đ",
                                               0,
                                               {
                                                 thousandsSeparator: ",",
@@ -82690,7 +82690,7 @@ var render = function() {
                                           _vm._s(
                                             _vm._f("currency")(
                                               _vm.order_selected.total_price,
-                                              "VND",
+                                              "đ",
                                               0,
                                               {
                                                 thousandsSeparator: ",",
@@ -83316,7 +83316,7 @@ var render = function() {
                                     _vm._s(
                                       _vm._f("currency")(
                                         price_type.cost,
-                                        "VND",
+                                        "đ",
                                         0,
                                         {
                                           thousandsSeparator: ",",
@@ -83541,7 +83541,7 @@ var render = function() {
                           _vm._v(
                             "Giá hiện tại: " +
                               _vm._s(
-                                _vm._f("currency")(product.price, "VND", 0, {
+                                _vm._f("currency")(product.price, "đ", 0, {
                                   thousandsSeparator: ",",
                                   spaceBetweenAmountAndSymbol: true,
                                   symbolOnLeft: false
@@ -83555,16 +83555,11 @@ var render = function() {
                               _vm._v(
                                 "Giá mới: " +
                                   _vm._s(
-                                    _vm._f("currency")(
-                                      _vm.tempPrice,
-                                      "VND",
-                                      0,
-                                      {
-                                        thousandsSeparator: ",",
-                                        spaceBetweenAmountAndSymbol: true,
-                                        symbolOnLeft: false
-                                      }
-                                    )
+                                    _vm._f("currency")(_vm.tempPrice, "đ", 0, {
+                                      thousandsSeparator: ",",
+                                      spaceBetweenAmountAndSymbol: true,
+                                      symbolOnLeft: false
+                                    })
                                   )
                               )
                             ])
@@ -83632,7 +83627,7 @@ var render = function() {
                       [
                         _vm._v(
                           _vm._s(
-                            _vm._f("currency")(product.price, "VND", 0, {
+                            _vm._f("currency")(product.price, "đ", 0, {
                               thousandsSeparator: ",",
                               spaceBetweenAmountAndSymbol: true,
                               symbolOnLeft: false
@@ -83708,7 +83703,7 @@ var render = function() {
                   _vm._v(
                     "\n                        " +
                       _vm._s(
-                        _vm._f("currency")(product.totalprice, "VND", 0, {
+                        _vm._f("currency")(product.totalprice, "đ", 0, {
                           thousandsSeparator: ",",
                           spaceBetweenAmountAndSymbol: true,
                           symbolOnLeft: false
@@ -83776,7 +83771,7 @@ var render = function() {
               _vm._v(
                 "Tổng: " +
                   _vm._s(
-                    _vm._f("currency")(_vm.totalPrice, "VND", 0, {
+                    _vm._f("currency")(_vm.totalPrice, "đ", 0, {
                       thousandsSeparator: ",",
                       spaceBetweenAmountAndSymbol: true,
                       symbolOnLeft: false
@@ -83892,7 +83887,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("label", { attrs: { for: "SearchQuery" } }, [
-                _vm._v("Nhập tên khách hàng cần tìm: ")
+                _vm._v("Nhập tên khách hàng: ")
               ]),
               _vm._v(" "),
               _c("input", {
@@ -84193,7 +84188,7 @@ var render = function() {
                     _vm._s(
                       _vm._f("currency")(
                         _vm.totalpriceAfterTaxAndDiscount,
-                        "VND",
+                        "đ",
                         0,
                         {
                           thousandsSeparator: ",",
@@ -84378,7 +84373,7 @@ var render = function() {
                               _c("td", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("currency")(item.price, "VND", 0, {
+                                    _vm._f("currency")(item.price, "đ", 0, {
                                       thousandsSeparator: ",",
                                       spaceBetweenAmountAndSymbol: true,
                                       symbolOnLeft: false
@@ -84394,7 +84389,7 @@ var render = function() {
                                   _vm._s(
                                     _vm._f("currency")(
                                       item.totalprice,
-                                      "VND",
+                                      "đ",
                                       0,
                                       {
                                         thousandsSeparator: ",",
@@ -84481,7 +84476,7 @@ var render = function() {
                                               "currency"
                                             )(
                                               _vm.totalPriceOrderSuccess,
-                                              "VND",
+                                              "đ",
                                               0,
                                               {
                                                 thousandsSeparator: ",",
@@ -84506,7 +84501,7 @@ var render = function() {
                                               _vm.totalPriceOrderSuccess *
                                                 (_vm.order_success.discount /
                                                   100),
-                                              "VND",
+                                              "đ",
                                               0,
                                               {
                                                 thousandsSeparator: ",",
@@ -84527,7 +84522,7 @@ var render = function() {
                                           _vm._s(
                                             _vm._f(
                                               "currency"
-                                            )(_vm.taxOrderSuccess, "VND", 0, {
+                                            )(_vm.taxOrderSuccess, "đ", 0, {
                                               thousandsSeparator: ",",
                                               spaceBetweenAmountAndSymbol: true,
                                               symbolOnLeft: false
@@ -84547,7 +84542,7 @@ var render = function() {
                                               "currency"
                                             )(
                                               _vm.totalPriceAfterTaxOrderSuccess,
-                                              "VND",
+                                              "đ",
                                               0,
                                               {
                                                 thousandsSeparator: ",",
@@ -85201,7 +85196,7 @@ var render = function() {
                                         _vm._s(
                                           _vm._f("currency")(
                                             price_type.cost,
-                                            "VND",
+                                            "đ",
                                             0,
                                             {
                                               thousandsSeparator: ",",
@@ -85425,7 +85420,7 @@ var render = function() {
                           _vm._v(
                             "Giá hiện tại: " +
                               _vm._s(
-                                _vm._f("currency")(product.price, "VND", 0, {
+                                _vm._f("currency")(product.price, "đ", 0, {
                                   thousandsSeparator: ",",
                                   spaceBetweenAmountAndSymbol: true,
                                   symbolOnLeft: false
@@ -85439,16 +85434,11 @@ var render = function() {
                               _vm._v(
                                 "Giá mới: " +
                                   _vm._s(
-                                    _vm._f("currency")(
-                                      _vm.tempPrice,
-                                      "VND",
-                                      0,
-                                      {
-                                        thousandsSeparator: ",",
-                                        spaceBetweenAmountAndSymbol: true,
-                                        symbolOnLeft: false
-                                      }
-                                    )
+                                    _vm._f("currency")(_vm.tempPrice, "đ", 0, {
+                                      thousandsSeparator: ",",
+                                      spaceBetweenAmountAndSymbol: true,
+                                      symbolOnLeft: false
+                                    })
                                   )
                               )
                             ])
@@ -85516,7 +85506,7 @@ var render = function() {
                       [
                         _vm._v(
                           _vm._s(
-                            _vm._f("currency")(product.price, "VND", 0, {
+                            _vm._f("currency")(product.price, "đ", 0, {
                               thousandsSeparator: ",",
                               spaceBetweenAmountAndSymbol: true,
                               symbolOnLeft: false
@@ -85592,7 +85582,7 @@ var render = function() {
                   _vm._v(
                     "\n                    " +
                       _vm._s(
-                        _vm._f("currency")(product.totalprice, "VND", 0, {
+                        _vm._f("currency")(product.totalprice, "đ", 0, {
                           thousandsSeparator: ",",
                           spaceBetweenAmountAndSymbol: true,
                           symbolOnLeft: false
@@ -85659,7 +85649,7 @@ var render = function() {
               _vm._v(
                 "Tổng: " +
                   _vm._s(
-                    _vm._f("currency")(_vm.totalPrice, "VND", 0, {
+                    _vm._f("currency")(_vm.totalPrice, "đ", 0, {
                       thousandsSeparator: ",",
                       spaceBetweenAmountAndSymbol: true,
                       symbolOnLeft: false
@@ -85775,7 +85765,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("label", { attrs: { for: "SearchQuery" } }, [
-                _vm._v("Nhập tên khách hàng cần tìm: ")
+                _vm._v("Nhập tên khách hàng: ")
               ]),
               _vm._v(" "),
               _c("input", {
@@ -86110,7 +86100,7 @@ var render = function() {
                     _vm._s(
                       _vm._f("currency")(
                         _vm.totalpriceAfterTaxAndDiscount,
-                        "VND",
+                        "đ",
                         0,
                         {
                           thousandsSeparator: ",",
@@ -86295,7 +86285,7 @@ var render = function() {
                               _c("td", [
                                 _vm._v(
                                   _vm._s(
-                                    _vm._f("currency")(item.price, "VND", 0, {
+                                    _vm._f("currency")(item.price, "đ", 0, {
                                       thousandsSeparator: ",",
                                       spaceBetweenAmountAndSymbol: true,
                                       symbolOnLeft: false
@@ -86317,7 +86307,7 @@ var render = function() {
                                         item.quantity *
                                           item.price *
                                           (_vm.order_success.discount / 100),
-                                      "VND",
+                                      "đ",
                                       0,
                                       {
                                         thousandsSeparator: ",",
@@ -86404,7 +86394,7 @@ var render = function() {
                                               "currency"
                                             )(
                                               _vm.totalPriceOrderSuccess,
-                                              "VND",
+                                              "đ",
                                               0,
                                               {
                                                 thousandsSeparator: ",",
@@ -86429,7 +86419,7 @@ var render = function() {
                                               _vm.totalPriceOrderSuccess *
                                                 (_vm.order_success.discount /
                                                   100),
-                                              "VND",
+                                              "đ",
                                               0,
                                               {
                                                 thousandsSeparator: ",",
@@ -86450,7 +86440,7 @@ var render = function() {
                                           _vm._s(
                                             _vm._f(
                                               "currency"
-                                            )(_vm.taxOrderSuccess, "VND", 0, {
+                                            )(_vm.taxOrderSuccess, "đ", 0, {
                                               thousandsSeparator: ",",
                                               spaceBetweenAmountAndSymbol: true,
                                               symbolOnLeft: false
@@ -86470,7 +86460,7 @@ var render = function() {
                                               "currency"
                                             )(
                                               _vm.totalPriceAfterTaxOrderSuccess,
-                                              "VND",
+                                              "đ",
                                               0,
                                               {
                                                 thousandsSeparator: ",",
@@ -87243,7 +87233,7 @@ var render = function() {
                                       _vm._s(
                                         _vm._f("currency")(
                                           price_type.cost,
-                                          "VND",
+                                          "đ",
                                           0,
                                           {
                                             thousandsSeparator: ",",
@@ -87924,7 +87914,7 @@ var render = function() {
                         _c("span", { staticClass: "badge badge-danger" }, [
                           _vm._v(
                             _vm._s(
-                              _vm._f("currency")(price_type.cost, "VND", 0, {
+                              _vm._f("currency")(price_type.cost, "đ", 0, {
                                 thousandsSeparator: ",",
                                 spaceBetweenAmountAndSymbol: true,
                                 symbolOnLeft: false
@@ -88400,7 +88390,7 @@ var render = function() {
                         _c("span", { staticClass: "badge badge-danger" }, [
                           _vm._v(
                             _vm._s(
-                              _vm._f("currency")(price_type.cost, "VND", 0, {
+                              _vm._f("currency")(price_type.cost, "đ", 0, {
                                 thousandsSeparator: ",",
                                 spaceBetweenAmountAndSymbol: true,
                                 symbolOnLeft: false
@@ -88941,374 +88931,6 @@ var render = function() {
                       options: _vm.chartOptions3
                     }
                   })
-                ],
-                1
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row mt-2" }, [
-              _c(
-                "div",
-                { staticClass: "col-12 col-md-12 col-lg-4 col-xl-3 bg-dark" },
-                [
-                  _c(
-                    "b-card",
-                    {
-                      staticStyle: { height: "400px", overflow: "scroll" },
-                      attrs: {
-                        title: "Thống kê nhập xuất",
-                        "text-variant": "dark"
-                      }
-                    },
-                    [
-                      _c(
-                        "b-card-text",
-                        [
-                          _c(
-                            "b-form",
-                            {
-                              on: {
-                                reset: _vm.onReset,
-                                keydown: function($event) {
-                                  if (
-                                    !$event.type.indexOf("key") &&
-                                    _vm._k(
-                                      $event.keyCode,
-                                      "enter",
-                                      13,
-                                      $event.key,
-                                      "Enter"
-                                    )
-                                  ) {
-                                    return null
-                                  }
-                                  $event.stopPropagation()
-                                  $event.preventDefault()
-                                }
-                              }
-                            },
-                            [
-                              _c(
-                                "b-form-group",
-                                [
-                                  _c("input", {
-                                    staticClass: "form-control mt-2",
-                                    attrs: {
-                                      type: "text",
-                                      id: "input-1",
-                                      placeholder: "Nhập tên mặt hàng cần tìm"
-                                    },
-                                    domProps: { value: _vm.searchQuery },
-                                    on: {
-                                      change: function($event) {
-                                        _vm.searchQuery = $event.target.value
-                                      },
-                                      keydown: function($event) {
-                                        if (
-                                          !$event.type.indexOf("key") &&
-                                          _vm._k(
-                                            $event.keyCode,
-                                            "enter",
-                                            13,
-                                            $event.key,
-                                            "Enter"
-                                          )
-                                        ) {
-                                          return null
-                                        }
-                                        _vm.searchQuery = $event.target.value
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _vm.searchQuery !== ""
-                                    ? _c(
-                                        "b-button",
-                                        {
-                                          staticClass: "mt-2",
-                                          attrs: {
-                                            type: "reset",
-                                            variant: "danger"
-                                          }
-                                        },
-                                        [_vm._v("Làm mới danh sách")]
-                                      )
-                                    : _vm._e()
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-form-group",
-                            {
-                              scopedSlots: _vm._u([
-                                {
-                                  key: "label",
-                                  fn: function() {
-                                    return [
-                                      _vm.resultQuery !== null &&
-                                      _vm.resultQuery.length > 0
-                                        ? _c("b", [
-                                            _vm._v("Chọn các sản phẩm: ")
-                                          ])
-                                        : _c("b", [_vm._v("Không tìm thấy")]),
-                                      _vm._v(" "),
-                                      _c("br"),
-                                      _vm._v(" "),
-                                      _vm.searchQuery === ""
-                                        ? _c(
-                                            "b-form-checkbox",
-                                            {
-                                              attrs: {
-                                                indeterminate:
-                                                  _vm.indeterminate,
-                                                "aria-describedby": "options",
-                                                "aria-controls": "options"
-                                              },
-                                              on: { change: _vm.toggleAll },
-                                              model: {
-                                                value: _vm.allSelected,
-                                                callback: function($$v) {
-                                                  _vm.allSelected = $$v
-                                                },
-                                                expression: "allSelected"
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                                " +
-                                                  _vm._s(
-                                                    _vm.allSelected
-                                                      ? "Bỏ chọn tất cả"
-                                                      : "Chọn tất cả"
-                                                  ) +
-                                                  "\n                                                "
-                                              )
-                                            ]
-                                          )
-                                        : _c(
-                                            "b-form-checkbox",
-                                            {
-                                              attrs: {
-                                                indeterminate:
-                                                  _vm.indeterminate2,
-                                                "aria-describedby": "options",
-                                                "aria-controls": "options"
-                                              },
-                                              on: { change: _vm.toggleAll2 },
-                                              model: {
-                                                value: _vm.allSelected2,
-                                                callback: function($$v) {
-                                                  _vm.allSelected2 = $$v
-                                                },
-                                                expression: "allSelected2"
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                                Chọn tất cả theo tìm kiếm:  "
-                                              ),
-                                              _c(
-                                                "span",
-                                                {
-                                                  staticClass:
-                                                    "font-weight-bold"
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(_vm.searchQuery)
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                    ]
-                                  },
-                                  proxy: true
-                                }
-                              ])
-                            },
-                            [
-                              _vm._v(" "),
-                              _c("b-form-checkbox-group", {
-                                staticClass: "ml-4",
-                                attrs: {
-                                  id: "options",
-                                  options: _vm.resultQuery,
-                                  name: "options",
-                                  "aria-label": "Individual options",
-                                  stacked: ""
-                                },
-                                model: {
-                                  value: _vm.selected,
-                                  callback: function($$v) {
-                                    _vm.selected = $$v
-                                  },
-                                  expression: "selected"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-12 col-md-12 col-lg-8 col-xl-9 bg-dark" },
-                [
-                  _c(
-                    "b-card",
-                    {
-                      staticStyle: { height: "400px", overflow: "scroll" },
-                      attrs: { "text-variant": "dark" }
-                    },
-                    [
-                      _c("div", { staticClass: "row" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "col-12 col-md-12 col-lg-12 col-xl-6"
-                          },
-                          [
-                            _c(
-                              "b-card",
-                              {
-                                staticStyle: {
-                                  height: "350px",
-                                  overflow: "scroll"
-                                },
-                                attrs: {
-                                  title:
-                                    "Danh sách các sản phẩm đã chọn thống kê",
-                                  "text-variant": "dark"
-                                }
-                              },
-                              [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-success mb-2",
-                                    attrs: {
-                                      disabled: _vm.selected.length === 0
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.handleStatisticProduct()
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("Thống kê")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "ul",
-                                  { staticClass: "list-group" },
-                                  _vm._l(_vm.selected, function(item, index) {
-                                    return _c(
-                                      "li",
-                                      {
-                                        key: item + Math.random(),
-                                        staticClass: "list-group-item"
-                                      },
-                                      [
-                                        _vm._v(
-                                          _vm._s(item) +
-                                            "\n                                                                "
-                                        ),
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "float-right btn btn-danger",
-                                            on: {
-                                              click: function($event) {
-                                                if (
-                                                  $event.target !==
-                                                  $event.currentTarget
-                                                ) {
-                                                  return null
-                                                }
-                                                return _vm.selected.splice(
-                                                  index,
-                                                  1
-                                                )
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "X\n                                                                "
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    )
-                                  }),
-                                  0
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "col-12 col-md-12 col-lg-12 col-xl-6"
-                          },
-                          [
-                            _c(
-                              "b-card",
-                              {
-                                staticStyle: {
-                                  height: "350px",
-                                  overflow: "scroll"
-                                },
-                                attrs: { title: "abc", "text-variant": "dark" }
-                              },
-                              [
-                                _c(
-                                  "table",
-                                  {
-                                    staticClass:
-                                      "table table-dark table-responsive table-bordered"
-                                  },
-                                  [
-                                    _c("thead", [_c("th")]),
-                                    _vm._v(" "),
-                                    _c("tbody", [
-                                      _c("tr", [
-                                        _c("td", [
-                                          _vm._v(
-                                            "\n                                                                   " +
-                                              _vm._s(_vm.selected_finish) +
-                                              "\n                                                               "
-                                          )
-                                        ])
-                                      ])
-                                    ])
-                                  ]
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        )
-                      ])
-                    ]
-                  )
                 ],
                 1
               )

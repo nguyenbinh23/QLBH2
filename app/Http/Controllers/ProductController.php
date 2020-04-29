@@ -264,7 +264,11 @@ class ProductController extends Controller
                             $item['price'] = $price->cost;
                         }
                         else {
-                            $item['price'] = 0;
+                            if(isset($item->pricelist[0])){
+                                $item['price'] = $item->pricelist[0]->cost;
+                            }else {
+                                $item['price'] = 0;
+                            }
                         }
                     }
                 }
@@ -295,7 +299,11 @@ class ProductController extends Controller
                             $item['price'] = $price->cost;
                         }
                         else {
-                            $item['price'] = 0;
+                            if(isset($item->pricelist[0])){
+                                $item['price'] = $item->pricelist[0]->cost;
+                            }else {
+                                $item['price'] = 0;
+                            }
                         }
                     }
                 }
@@ -327,7 +335,11 @@ class ProductController extends Controller
                             $item['price'] = $price->cost;
                         }
                         else {
-                            $item['price'] = null;
+                            if(isset($item->pricelist[0])){
+                                $item['price'] = $item->pricelist[0]->cost;
+                            }else {
+                                $item['price'] = 0;
+                            }
                         }
                     }
                 }
@@ -359,7 +371,11 @@ class ProductController extends Controller
                             $item['price'] = $price->cost;
                         }
                         else {
-                            $item['price'] = 0;
+                            if(isset($item->pricelist[0])){
+                                $item['price'] = $item->pricelist[0]->cost;
+                            }else {
+                                $item['price'] = 0;
+                            }
                         }
                     }
                 }

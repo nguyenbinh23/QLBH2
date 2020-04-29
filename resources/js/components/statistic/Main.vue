@@ -57,7 +57,7 @@
                                         :options="chartOptions3"/>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <!-- <div class="row mt-2">
                                 <div class="col-12 col-md-12 col-lg-4 col-xl-3 bg-dark">
                                     <b-card title="Thống kê nhập xuất" text-variant="dark"  style="height: 400px; overflow: scroll;">
                                         <b-card-text>
@@ -149,7 +149,7 @@
                                            </div>
                                     </b-card>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

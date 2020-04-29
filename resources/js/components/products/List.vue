@@ -50,7 +50,7 @@
                     <td>
                         <div class="form-group">
                             <select class="form-control">
-                                <option v-for="price_type in product.pricelist" :key="price_type.id">{{price_type.name}}: {{price_type.cost | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</option>
+                                <option v-for="price_type in product.pricelist" :key="price_type.id">{{price_type.name}}: {{price_type.cost | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</option>
                             </select>
                         </div>
                     </td>

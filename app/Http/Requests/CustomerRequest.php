@@ -27,9 +27,6 @@ class CustomerRequest extends FormRequest
         $id = $this->id;
         return [
             'name' => 'required',
-            'email' => "required|unique:customers,email,{$id}",
-            'address' => 'required',
-            'phone' => 'required',
             'sorting' => 'required'
         ];
     }
@@ -37,10 +34,6 @@ class CustomerRequest extends FormRequest
     {
         return [
             'name.required' => 'Bạn cần nhập tên',
-            'email.required' => 'Bạn cần nhập email',
-            'email.unique' => 'Không được trùng email',
-            'address.required' => 'Không được bỏ trống địa chỉ',
-            'phone.required' => 'Không được bỏ trống số điện thoại',
             'sorting.required' => 'Hãy chọn loại khách hàng',
         ];
     }

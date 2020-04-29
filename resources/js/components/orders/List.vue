@@ -47,7 +47,7 @@
                     <td>{{order.tax_code}}</td>
                     <td>{{order.tax}}%</td>
                     <td>{{order.discount}}%</td>
-                    <td>{{order.total_price | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</td>
+                    <td>{{order.total_price | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</td>
                     <td><button class="btn btn-info"  @click="viewOrderDetail(order)">Xem</button></td>
                     <td><router-link :to="{name: 'order-edit' , params: {id: order.id}}" class="btn btn-warning">Sửa</router-link></td>
                     <td><button class="btn btn-danger" @click="removeOrder(index,order.id)">Xóa</button></td>
@@ -153,9 +153,9 @@
                                 <td>{{item.product_name}}</td>
                                 <td>{{item.unit}}</td>
                                 <td>{{item.quantity}}</td>
-                                <td>{{item.price| currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</td>
+                                <td>{{item.price| currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false})}}</td>
                                 <td>{{item.discount}} %</td>
-                                <td class="text-right">{{  (item.quantity * item.price) - (item.quantity * item.price)*(item.discount / 100) | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</td>
+                                <td class="text-right">{{  (item.quantity * item.price) - (item.quantity * item.price)*(item.discount / 100) | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</td>
                             </tr>
                             <tr>
                                 <td colspan="7" class="text-left">
@@ -170,10 +170,10 @@
                                             <p class="font-weight-bold">Tổng tiền hàng sau thuế: </p>
                                         </div>
                                         <div class="col text-right">
-                                            <p class="font-weight-bold">{{ totalPrice | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
-                                            <p class="font-weight-bold">{{ totalPrice * (order_selected.discount / 100) | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
-                                            <p class="font-weight-bold">{{ totalPrice * (order_selected.tax / 100)   | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
-                                            <p class="font-weight-bold">{{ order_selected.total_price | currency('VND', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
+                                            <p class="font-weight-bold">{{ totalPrice | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
+                                            <p class="font-weight-bold">{{ totalPrice * (order_selected.discount / 100) | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
+                                            <p class="font-weight-bold">{{ totalPrice * (order_selected.tax / 100)   | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
+                                            <p class="font-weight-bold">{{ order_selected.total_price | currency('đ', 0 , { thousandsSeparator: ',' , spaceBetweenAmountAndSymbol:true   ,symbolOnLeft: false}) }}</p>
                                         </div>
                                     </div>
                                   <p class="font-weight-bold" style="border-top: 1px solid #dee2e6; padding-top: 20px;">Số tiền viết bằng chữ: <span class="font-weight-light">{{DocTienBangChu(order_selected.total_price)}}</span></p>
