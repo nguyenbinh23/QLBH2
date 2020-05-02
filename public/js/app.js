@@ -3452,12 +3452,12 @@ __webpack_require__.r(__webpack_exports__);
 
       if (tram != 0) {
         KetQua += ChuSo[tram] + " trăm ";
-        if (chuc == 0 && donvi != 0) KetQua += " linh ";
+        if (chuc == 0 && donvi != 0) KetQua += " lẻ ";
       }
 
       if (chuc != 0 && chuc != 1) {
         KetQua += ChuSo[chuc] + " mươi";
-        if (chuc == 0 && donvi != 0) KetQua = KetQua + " linh ";
+        if (chuc == 0 && donvi != 0) KetQua = KetQua + " lẻ ";
       }
 
       if (chuc == 1) KetQua += " mười ";
@@ -4425,12 +4425,12 @@ __webpack_require__.r(__webpack_exports__);
 
       if (tram != 0) {
         KetQua += ChuSo[tram] + " trăm ";
-        if (chuc == 0 && donvi != 0) KetQua += " linh ";
+        if (chuc == 0 && donvi != 0) KetQua += " lẻ ";
       }
 
       if (chuc != 0 && chuc != 1) {
         KetQua += ChuSo[chuc] + " mươi";
-        if (chuc == 0 && donvi != 0) KetQua = KetQua + " linh ";
+        if (chuc == 0 && donvi != 0) KetQua = KetQua + " lẻ ";
       }
 
       if (chuc == 1) KetQua += " mười ";
@@ -5398,12 +5398,12 @@ __webpack_require__.r(__webpack_exports__);
 
       if (tram != 0) {
         KetQua += ChuSo[tram] + " trăm ";
-        if (chuc == 0 && donvi != 0) KetQua += " linh ";
+        if (chuc == 0 && donvi != 0) KetQua += " lẻ ";
       }
 
       if (chuc != 0 && chuc != 1) {
         KetQua += ChuSo[chuc] + " mươi";
-        if (chuc == 0 && donvi != 0) KetQua = KetQua + " linh ";
+        if (chuc == 0 && donvi != 0) KetQua = KetQua + " lẻ ";
       }
 
       if (chuc == 1) KetQua += " mười ";
