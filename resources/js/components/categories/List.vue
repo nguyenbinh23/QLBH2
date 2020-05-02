@@ -4,7 +4,7 @@
            <h4><i class="fas fa-clipboard-list"></i> Danh sách thể loại</h4>
        </div>
         <router-link  to="/admin/categories/new" class="btn btn-outline-success btn-sm mb-2"><i class="fas fa-user-plus"></i> Thêm mới thể loại</router-link>
-        <button class="btn btn-outline-warning btn-sm mb-2" @click="fetchCategories()"><i class="fa fa-refresh"></i> Làm mới danh sách</button>
+        <button class="btn btn-outline-warning btn-sm mb-2" @click="fetchCategories()"><i class="fa fa-sync-alt"></i> Làm mới danh sách</button>
        <div class="input-group mb-3">
             <input @keydown.enter="findCategory()" type="text" class="form-control" placeholder="Nhập tên thể loại cần tìm..." v-model="category_name_find">
             <div class="input-group-append">

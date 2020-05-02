@@ -20,9 +20,9 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown active ml-2">
-                            <a class="nav-link dropdown-toggle btn btn-outline-danger" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bar-chart" aria-hidden="true"></i> Thống Kê</a>
+                            <a class="nav-link dropdown-toggle btn btn-outline-danger" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-chart-bar" aria-hidden="true"></i> Thống Kê</a>
                             <div class="dropdown-menu">
-                                <router-link to="/admin/statistic" ><a class="dropdown-item" href="#"><i class="fa fa-line-chart"  aria-hidden="true"></i> Thông kê lãi suất</a></router-link>
+                                <router-link to="/admin/statistic" ><a class="dropdown-item" href="#"><i class="fa fa-chart-bar"  aria-hidden="true"></i> Thông kê nhập xuất</a></router-link>
                             </div>
                         </li>
                         <li class="nav-item dropdown active ml-2">

@@ -4,7 +4,7 @@
            <h4><i class="fa fa-balance-scale" aria-hidden="true"></i> Danh sách đơn vị</h4>
        </div>
         <router-link  to="/admin/units/new" class="btn btn-outline-success btn-sm mb-2"><i class="fas fa-plus"></i> Thêm mới đơn vị</router-link>
-        <button class="btn btn-outline-warning btn-sm mb-2" @click="refreshUnit()"><i class="fa fa-refresh"></i> Làm mới danh sách</button>
+        <button class="btn btn-outline-warning btn-sm mb-2" @click="refreshUnit()"><i class="fa fa-sync-alt"></i> Làm mới danh sách</button>
        <div class="input-group mb-3">
             <input @keydown.enter="findUnit()" type="text" class="form-control" placeholder="Nhập tên đơn vị cần tìm..." v-model="name_find">
             <div class="input-group-append">

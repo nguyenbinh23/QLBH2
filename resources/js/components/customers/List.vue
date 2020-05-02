@@ -4,7 +4,7 @@
            <h4><i class="fas fa-clipboard-list"></i> Danh sách khách hàng</h4>
        </div>
         <router-link  to="/admin/customers/new" class="btn btn-outline-success btn-sm mb-2"><i class="fas fa-user-plus"></i> Thêm Khách Hàng</router-link>
-        <button class="btn btn-outline-warning btn-sm mb-2" @click="newList()"><i class="fa fa-refresh"></i> Làm mới danh sách</button>
+        <button class="btn btn-outline-warning btn-sm mb-2" @click="newList()"><i class="fa fa-sync-alt"></i> Làm mới danh sách</button>
        <div class="input-group mb-3">
             <input @keydown.enter="findCustomer()" type="text" class="form-control" placeholder="Nhập khách hàng cần tìm..." v-model="customer_name_find">
             <div class="input-group-append">

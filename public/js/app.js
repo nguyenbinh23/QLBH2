@@ -79107,10 +79107,10 @@ var render = function() {
                                 },
                                 [
                                   _c("i", {
-                                    staticClass: "fa fa-line-chart",
+                                    staticClass: "fa fa-chart-bar",
                                     attrs: { "aria-hidden": "true" }
                                   }),
-                                  _vm._v(" Thông kê lãi suất")
+                                  _vm._v(" Thông kê nhập xuất")
                                 ]
                               )
                             ]
@@ -79452,7 +79452,7 @@ var staticRenderFns = [
       },
       [
         _c("i", {
-          staticClass: "fa fa-bar-chart",
+          staticClass: "fa fa-chart-bar",
           attrs: { "aria-hidden": "true" }
         }),
         _vm._v(" Thống Kê")
@@ -80227,7 +80227,7 @@ var render = function() {
           }
         },
         [
-          _c("i", { staticClass: "fa fa-refresh" }),
+          _c("i", { staticClass: "fa fa-sync-alt" }),
           _vm._v(" Làm mới danh sách")
         ]
       ),
@@ -80948,7 +80948,7 @@ var render = function() {
           }
         },
         [
-          _c("i", { staticClass: "fa fa-refresh" }),
+          _c("i", { staticClass: "fa fa-sync-alt" }),
           _vm._v(" Làm mới danh sách")
         ]
       ),
@@ -82033,7 +82033,7 @@ var render = function() {
           }
         },
         [
-          _c("i", { staticClass: "fa fa-refresh" }),
+          _c("i", { staticClass: "fa fa-sync-alt" }),
           _vm._v(" Làm mới danh sách")
         ]
       ),
@@ -83113,7 +83113,7 @@ var render = function() {
           }
         },
         [
-          _c("i", { staticClass: "fa fa-refresh" }),
+          _c("i", { staticClass: "fa fa-sync-alt" }),
           _vm._v(" Làm mới danh sách")
         ]
       ),
@@ -84988,7 +84988,7 @@ var render = function() {
           }
         },
         [
-          _c("i", { staticClass: "fa fa-refresh" }),
+          _c("i", { staticClass: "fa fa-sync-alt" }),
           _vm._v(" Làm mới danh sách")
         ]
       ),
@@ -87063,7 +87063,7 @@ var render = function() {
           }
         },
         [
-          _c("i", { staticClass: "fa fa-refresh" }),
+          _c("i", { staticClass: "fa fa-sync-alt" }),
           _vm._v(" Làm mới danh sách")
         ]
       ),
@@ -88999,7 +88999,7 @@ var render = function() {
           }
         },
         [
-          _c("i", { staticClass: "fa fa-refresh" }),
+          _c("i", { staticClass: "fa fa-sync-alt" }),
           _vm._v(" Làm mới danh sách")
         ]
       ),

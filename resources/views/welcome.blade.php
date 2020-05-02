@@ -10,6 +10,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@500&display=swap" rel="stylesheet">
 
         <!-- Styles -->
+
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <style>
             body {
@@ -22,7 +23,7 @@
             <main-app></main-app>
         </div>
         <script src={{ asset('js/app.js')}}></script>
-        <script src="https://kit.fontawesome.com/7c0cca649a.js" crossorigin="anonymous"></script>
+        <script src={{ asset('fontawesome/js/all.js')}}></script>
     </body>
 </html>
 
