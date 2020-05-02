@@ -875,7 +875,7 @@ export default {
                 return KetQua;
             },
         DocTienBangChu(SoTien){
-                var Tien=new Array(" đồng", " nghìn", " triệu", " tỷ", " nghìn tỷ", " triệu tỷ");
+                var Tien=new Array(" ", " nghìn", " triệu", " tỷ", " nghìn tỷ", " triệu tỷ");
 
                 var lan=0;
                 var i=0;
@@ -954,7 +954,7 @@ export default {
             {
                     KetQua = KetQua.substring(0, KetQua.length - 1);
             }
-            KetQua = KetQua.substring(1,2).toUpperCase()+ KetQua.substring(2);
+            KetQua = KetQua.substring(1,2).toUpperCase()+ KetQua.substring(2) + ' đồng';
             return KetQua;//.substring(0, 1);//.toUpperCase();// + KetQua.substring(1);
         }
     }

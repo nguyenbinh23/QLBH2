@@ -391,8 +391,6 @@ class ProductController extends Controller
         {
             Storage::delete('public/cover_images/'.$image);
         }
-
-
         $images = json_decode($product->image_list);
         if(isset($images)){
             foreach($images as $item){
