@@ -129,7 +129,7 @@ export default {
     },
     methods: {
         fetchCategories(){
-            axios.get('http://localhost:8000/api/categories/all',{
+            axios.get('/api/categories/all',{
                     headers: {
                         "Authorization": 'Bearer '+this.currentUser.token
                     }
@@ -142,7 +142,7 @@ export default {
                 })
         },
         fetchUnits(){
-            axios.get('http://localhost:8000/api/units/all',{
+            axios.get('/api/units/all',{
                     headers: {
                         "Authorization": 'Bearer '+this.currentUser.token
                     }

@@ -100,7 +100,7 @@ export default {
     },
     methods: {
         fetchCategories(page_url){
-            page_url = page_url || 'http://localhost:8000/api/categories'
+            page_url = page_url || '/api/categories'
             axios.get(page_url,{
                 headers: {
                     'Authorization': 'Bearer '+this.currentUser.token,

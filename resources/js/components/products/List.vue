@@ -122,7 +122,7 @@ export default {
     },
     methods: {
         fetchCategories(){
-            axios.get('http://localhost:8000/api/categories/all',{
+            axios.get('/api/categories/all',{
                     headers: {
                         "Authorization": 'Bearer '+this.currentUser.token
                     }
@@ -156,7 +156,7 @@ export default {
         },
 
         findProduct(page_url){
-            page_url = page_url || 'http://localhost:8000/api/products/find'
+            page_url = page_url || '/api/products/find'
             axios.post(page_url,
                 {
                     name: this.product_name_find,

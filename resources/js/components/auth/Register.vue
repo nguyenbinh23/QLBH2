@@ -59,7 +59,7 @@ export default {
         registerUser(){
             this.success = null,
             this.errors = {},
-            axios.post('http://localhost:8000/api/auth/register',this.form)
+            axios.post('/api/auth/register',this.form)
                 .then((res) => {
                     this.success = res.data.success
                     this.$router.push({ path: '/login', name: 'login',  query: { success: this.success , email: this.form.email }})

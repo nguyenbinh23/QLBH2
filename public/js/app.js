@@ -2311,7 +2311,7 @@ __webpack_require__.r(__webpack_exports__);
     registerUser: function registerUser() {
       var _this = this;
 
-      this.success = null, this.errors = {}, axios.post('http://localhost:8000/api/auth/register', this.form).then(function (res) {
+      this.success = null, this.errors = {}, axios.post('/api/auth/register', this.form).then(function (res) {
         _this.success = res.data.success;
 
         _this.$router.push({
@@ -2447,7 +2447,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchCategories: function fetchCategories(page_url) {
       var _this = this;
 
-      page_url = page_url || 'http://localhost:8000/api/categories';
+      page_url = page_url || '/api/categories';
       axios.get(page_url, {
         headers: {
           'Authorization': 'Bearer ' + this.currentUser.token
@@ -2840,7 +2840,7 @@ __webpack_require__.r(__webpack_exports__);
     findCustomer: function findCustomer(page_url) {
       var _this = this;
 
-      page_url = page_url || 'http://localhost:8000/api/customers/find';
+      page_url = page_url || '/api/customers/find';
       axios.post(page_url, {
         name: this.customer_name_find,
         sorting: this.customer_sorting
@@ -3408,7 +3408,7 @@ __webpack_require__.r(__webpack_exports__);
         this.ordersName = '';
       }
 
-      page_url = page_url || 'http://localhost:8000/api/orders/find';
+      page_url = page_url || '/api/orders/find';
       axios.post(page_url, {
         name: this.ordersName,
         kind: this.orderKind
@@ -4113,7 +4113,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchCustomers: function fetchCustomers() {
       var _this2 = this;
 
-      axios.get('http://localhost:8000/api/customers/all', {
+      axios.get('/api/customers/all', {
         headers: {
           "Authorization": 'Bearer ' + this.currentUser.token
         }
@@ -4126,7 +4126,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchCategories: function fetchCategories() {
       var _this3 = this;
 
-      axios.get('http://localhost:8000/api/categories/all', {
+      axios.get('/api/categories/all', {
         headers: {
           "Authorization": 'Bearer ' + this.currentUser.token
         }
@@ -4139,7 +4139,7 @@ __webpack_require__.r(__webpack_exports__);
     findProduct: function findProduct(page_url) {
       var _this4 = this;
 
-      page_url = page_url || 'http://localhost:8000/api/products/find';
+      page_url = page_url || '/api/products/find';
       axios.post(page_url, {
         name: this.product_name_find,
         product_category: this.product_category
@@ -5060,7 +5060,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchOrder: function fetchOrder(id) {
       var _this2 = this;
 
-      axios.get('http://localhost:8000/api/orders/' + id, {
+      axios.get('/api/orders/' + id, {
         headers: {
           "Authorization": 'Bearer ' + this.currentUser.token
         }
@@ -5085,7 +5085,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchCustomers: function fetchCustomers() {
       var _this3 = this;
 
-      axios.get('http://localhost:8000/api/customers/all', {
+      axios.get('/api/customers/all', {
         headers: {
           "Authorization": 'Bearer ' + this.currentUser.token
         }
@@ -5098,7 +5098,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchCategories: function fetchCategories() {
       var _this4 = this;
 
-      axios.get('http://localhost:8000/api/categories/all', {
+      axios.get('/api/categories/all', {
         headers: {
           "Authorization": 'Bearer ' + this.currentUser.token
         }
@@ -5111,7 +5111,7 @@ __webpack_require__.r(__webpack_exports__);
     findProduct: function findProduct(page_url) {
       var _this5 = this;
 
-      page_url = page_url || 'http://localhost:8000/api/products/find';
+      page_url = page_url || '/api/products/find';
       axios.post(page_url, {
         name: this.product_name_find,
         product_category: this.product_category
@@ -5745,7 +5745,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchCategories: function fetchCategories() {
       var _this = this;
 
-      axios.get('http://localhost:8000/api/categories/all', {
+      axios.get('/api/categories/all', {
         headers: {
           "Authorization": 'Bearer ' + this.currentUser.token
         }
@@ -5775,7 +5775,7 @@ __webpack_require__.r(__webpack_exports__);
     findProduct: function findProduct(page_url) {
       var _this2 = this;
 
-      page_url = page_url || 'http://localhost:8000/api/products/find';
+      page_url = page_url || '/api/products/find';
       axios.post(page_url, {
         name: this.product_name_find,
         product_category: this.product_category
@@ -5973,7 +5973,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchCategories: function fetchCategories() {
       var _this = this;
 
-      axios.get('http://localhost:8000/api/categories/all', {
+      axios.get('/api/categories/all', {
         headers: {
           "Authorization": 'Bearer ' + this.currentUser.token
         }
@@ -5986,7 +5986,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchUnits: function fetchUnits() {
       var _this2 = this;
 
-      axios.get('http://localhost:8000/api/units/all', {
+      axios.get('/api/units/all', {
         headers: {
           "Authorization": 'Bearer ' + this.currentUser.token
         }
@@ -6244,7 +6244,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchProduct: function fetchProduct(id) {
       var _this = this;
 
-      axios.get('http://localhost:8000/api/products/' + id, {
+      axios.get('/api/products/' + id, {
         headers: {
           "Authorization": 'Bearer ' + this.currentUser.token
         }
@@ -6258,7 +6258,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchCategories: function fetchCategories() {
       var _this2 = this;
 
-      axios.get('http://localhost:8000/api/categories/all', {
+      axios.get('/api/categories/all', {
         headers: {
           "Authorization": 'Bearer ' + this.currentUser.token
         }
@@ -6271,7 +6271,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchUnits: function fetchUnits() {
       var _this3 = this;
 
-      axios.get('http://localhost:8000/api/units/all', {
+      axios.get('/api/units/all', {
         headers: {
           "Authorization": 'Bearer ' + this.currentUser.token
         }
@@ -6369,7 +6369,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.picked = 'hinhanhcu';
       this.deleteImages = [];
-      axios.get('http://localhost:8000/api/products/' + this.$route.params.id, {
+      axios.get('/api/products/' + this.$route.params.id, {
         headers: {
           "Authorization": 'Bearer ' + this.currentUser.token
         }
@@ -6384,7 +6384,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.picked = 'hinhanhmoi';
       this.deleteImages = [];
-      axios.get('http://localhost:8000/api/products/' + this.$route.params.id, {
+      axios.get('/api/products/' + this.$route.params.id, {
         headers: {
           "Authorization": 'Bearer ' + this.currentUser.token
         }

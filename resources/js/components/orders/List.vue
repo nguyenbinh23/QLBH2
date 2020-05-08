@@ -275,7 +275,7 @@ export default {
             if(this.orderKind === 'chuacokh'){
                 this.ordersName = ''
             }
-            page_url = page_url || 'http://localhost:8000/api/orders/find'
+            page_url = page_url || '/api/orders/find'
             axios.post(page_url,
                 {
                     name: this.ordersName,

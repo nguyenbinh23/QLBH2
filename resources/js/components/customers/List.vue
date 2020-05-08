@@ -127,7 +127,7 @@ export default {
         },
 
         findCustomer(page_url){
-            page_url = page_url || 'http://localhost:8000/api/customers/find'
+            page_url = page_url || '/api/customers/find'
             axios.post(page_url,
                 {
                     name: this.customer_name_find,

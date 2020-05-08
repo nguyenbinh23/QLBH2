@@ -183,7 +183,7 @@ export default {
     },
     methods: {
         fetchProduct(id){
-              axios.get('http://localhost:8000/api/products/'+id,{
+              axios.get('/api/products/'+id,{
                     headers: {
                         "Authorization": 'Bearer '+this.currentUser.token
                     }
@@ -197,7 +197,7 @@ export default {
                 })
         },
         fetchCategories(){
-            axios.get('http://localhost:8000/api/categories/all',{
+            axios.get('/api/categories/all',{
                     headers: {
                         "Authorization": 'Bearer '+this.currentUser.token
                     }
@@ -210,7 +210,7 @@ export default {
                 })
         },
         fetchUnits(){
-            axios.get('http://localhost:8000/api/units/all',{
+            axios.get('/api/units/all',{
                     headers: {
                         "Authorization": 'Bearer '+this.currentUser.token
                     }
@@ -304,7 +304,7 @@ export default {
         oldImage(){
             this.picked = 'hinhanhcu'
             this.deleteImages = []
-            axios.get('http://localhost:8000/api/products/'+this.$route.params.id,{
+            axios.get('/api/products/'+this.$route.params.id,{
                 headers: {
                     "Authorization": 'Bearer '+this.currentUser.token
                 }
@@ -319,7 +319,7 @@ export default {
         newImage(){
             this.picked = 'hinhanhmoi'
             this.deleteImages = []
-            axios.get('http://localhost:8000/api/products/'+this.$route.params.id,{
+            axios.get('/api/products/'+this.$route.params.id,{
                 headers: {
                     "Authorization": 'Bearer '+this.currentUser.token
                 }
