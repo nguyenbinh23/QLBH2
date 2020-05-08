@@ -73,6 +73,8 @@ export default {
     },
     methods: {
         editUser(){
+            this.errors = []
+            this.alert = null
             let formData = new FormData()
             formData.append('id',this.currentUser.id)
             formData.append('name',this.user.name)
@@ -81,7 +83,7 @@ export default {
                 formData.append('new_password',this.user.new_password)
                 formData.append('password_confirm',this.user.password_confirm)
             }
-            this.errors = []
+
             axios.post('/api/users',formData,{
                 headers: {
                     "Authorization": 'Bearer '+this.currentUser.token

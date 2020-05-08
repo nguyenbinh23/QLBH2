@@ -7279,6 +7279,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     editUser: function editUser() {
       var _this = this;
 
+      this.errors = [];
+      this.alert = null;
       var formData = new FormData();
       formData.append('id', this.currentUser.id);
       formData.append('name', this.user.name);
@@ -7289,7 +7291,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         formData.append('password_confirm', this.user.password_confirm);
       }
 
-      this.errors = [];
       axios.post('/api/users', formData, {
         headers: {
           "Authorization": 'Bearer ' + this.currentUser.token
