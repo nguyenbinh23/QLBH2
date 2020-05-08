@@ -305,7 +305,6 @@ export default {
         },
         viewOrderDetail(order){
             this.order_selected = order
-            console.log(order)
         },
         printOrder(){
             this.$htmlToPaper('hoadon');

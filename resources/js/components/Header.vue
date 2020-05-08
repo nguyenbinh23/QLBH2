@@ -59,7 +59,8 @@
                                 {{currentUser.name}} <i class="fa fa-user" aria-hidden="true" v-if="currentUser.quyenhan !== 'admin'" ></i><i v-else class="fa fa-user-shield" aria-hidden="true"></i>
                             </button>
                             <div class="dropdown-menu">
-                                <router-link class="dropdown-item" v-if="currentUser.quyenhan === 'admin' && $route.path !== '/admin'" to="/admin"><i class="fa fa-spin fa-cog" aria-hidden="true"></i> Trang quản trị </router-link>
+                                <router-link class="dropdown-item" v-if="currentUser.quyenhan === 'admin' && $route.path.indexOf('/admin') == -1" to="/admin"><i class="fa fa-spin fa-cog" aria-hidden="true"></i> Trang quản trị </router-link>
+                                <router-link class="dropdown-item" :to="`/admin/users/${currentUser.id}`"><i class="fa fa-key" aria-hidden="true"></i> Đổi mật khẩu</router-link>
                                 <button class="dropdown-item" @click="logout"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</button>
                             </div>
                         </div>

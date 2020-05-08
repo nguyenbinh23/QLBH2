@@ -120,4 +120,37 @@ class AuthController extends Controller
                 ],422);
         }
     }
+
+    public function edit(Request $request)
+    {
+        $this->validate($request,
+        [
+            'name' => 'required',
+            'new_password' => 'max:20|min:8',
+        ],
+        [
+            'name.required' => 'Bạn không được bỏ trống tên',
+            'new_password.min' => 'Mật khẩu quá ngắn, cần phải có 8 kí tự trở lên',
+            'new_password.max' => 'Mật khẩu quá dài, cần phải có 20 kí tự trở xuống',
+        ]);
+        $user = User::find($request->id);
+
+        $user_now = JWTAuth::user();
+        if($user->id == $user_now->id){
+            $user->name = $request->name;
+            if($request->picked == true){
+                if($request->new_password == $request->password_confirm){
+                    $user->password = Hash::make($request->new_password);
+                }else
+                    return response()->json([
+                    'errors' => [
+                        'password' => ['Mật khẩu không khớp, hãy kiểm tra lại'],
+                        'password_confirm' => ['Mật khẩu không khớp, hãy kiểm tra lại']
+                        ]
+                    ],422);
+            }
+            $user->save();
+            return response()->json($user,200);
+        }
+    }
 }

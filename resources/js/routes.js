@@ -40,6 +40,11 @@ import OrdersNew from './components/orders/New'
 import Order from './components/orders/View'
 //
 
+//User
+import UserMain from './components/user/Main'
+import User from './components/user/View'
+//
+
 //Statistic
 import Statistic from './components/statistic/Main'
 //
@@ -216,7 +221,19 @@ export const routes = [
                 ]
             },
             //
-
+            //User
+            {
+                path: 'users',
+                component: UserMain,
+                children: [
+                    {
+                        path: ':id',
+                        component: User,
+                        name: 'user-edit'
+                    }
+                ]
+            },
+            //
             //Statistic
             {
                 path: 'statistic',

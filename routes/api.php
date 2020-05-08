@@ -76,4 +76,7 @@ Route::group(['middleware' => ['jwt.auth','admin']], function($router){
     //Statistic
     Route::get('statistics','StatisticController@profitAndLossStatement');
     Route::post('statistics/products','StatisticController@statisticProducts');
+
+    //User
+    Route::post('users','AuthController@edit');
 });

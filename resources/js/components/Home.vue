@@ -31,6 +31,11 @@
 <script>
 export default {
     name: 'home',
+    created(){
+        if(this.currentUser == null){
+            this.$router.push('/login')
+        }
+    },
     computed: {
         currentUser(){
             return this.$store.getters.currentUser

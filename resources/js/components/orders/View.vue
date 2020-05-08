@@ -815,7 +815,6 @@ export default {
             let vm = this
             var checkExist = setInterval(function() {
                 if(vm.order_success !== null && vm.order_success.kind !== 'nhaphang') {
-                    console.log("Exists!");
                     clearInterval(checkExist);
                     vm.printOrder()
                 }
